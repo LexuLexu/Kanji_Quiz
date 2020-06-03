@@ -1,0 +1,28 @@
+<resources>
+
+    <!-- Base application theme. -->
+
+    <style name="Theme.QuizTest1" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="background">@android:color/white</item>
+
+        <item name="android:windowAnimationStyle">@null</item>
+
+    </style>
+
+    <style name="MyBottomNavigationView" parent="Widget.MaterialComponents.BottomAppBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowAnimationStyle">@null</item>
+
+    </style>
+
+
+
+</resources>

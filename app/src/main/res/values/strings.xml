@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">QuizTest1</string>
+
+    <string-array name="Numbers">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+
+    <string-array name="Words">
+        <item>ONE</item>
+        <item>TWO</item>
+        <item>THREE</item>
+        <item>FOUR</item>
+        <item>FIVE</item>
+        <item>SIX</item>
+        <item>SEVEN</item>
+        <item>EIGHT</item>
+        <item>NINE</item>
+        <item>TEN</item>
+        <item>ELEVEN</item>
+        <item>TWELVE</item>
+        <item>THIRTEEN</item>
+        <item>FOURTEEN</item>
+        <item>FIFTEEN</item>
+    </string-array>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+</resources>
