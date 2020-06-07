@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -66,6 +67,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         Intent questionsIntent = new Intent(ProfileActivity.this, EndlessActivity.class);
         startActivity(questionsIntent);
+
+    }
+
+    public void log_out (View view) {
+
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
 
     }
 }
