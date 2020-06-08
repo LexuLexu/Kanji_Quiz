@@ -70,11 +70,4 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    public void log_out (View view) {
-
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
-
-    }
 }
