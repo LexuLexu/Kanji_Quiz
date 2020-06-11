@@ -203,10 +203,10 @@ public class EndlessActivity extends AppCompatActivity {
         scoreNumber.setTextColor(this.getResources().getColor(R.color.incorrect));
     }
 
-    /*public void go_to_questions (View view) {
+    public void go_to_questions (View view) {
 
-        Intent questionsIntent = new Intent(EndlessActivity.this, EndlessActivity.class);
-        startActivity(questionsIntent);
+        Intent levelChoiceIntent = new Intent(EndlessActivity.this, LevelChoiceActivity.class);
+        startActivity(levelChoiceIntent);
 
-    } */
+    }
 }

@@ -58,8 +58,8 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     public void go_to_questions (View view) {
 
-        Intent questionsIntent = new Intent(LeaderboardActivity.this, EndlessActivity.class);
-        startActivity(questionsIntent);
+        Intent levelChoiceIntent = new Intent(LeaderboardActivity.this, LevelChoiceActivity.class);
+        startActivity(levelChoiceIntent);
 
     }
 }

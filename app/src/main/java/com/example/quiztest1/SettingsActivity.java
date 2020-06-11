@@ -98,9 +98,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void go_to_questions (View view) {
 
-        Intent questionsIntent = new Intent(SettingsActivity.this, EndlessActivity.class);
-        startActivity(questionsIntent);
-
+        Intent levelChoiceIntent = new Intent(SettingsActivity.this, LevelChoiceActivity.class);
+        startActivity(levelChoiceIntent);
     }
 
 }

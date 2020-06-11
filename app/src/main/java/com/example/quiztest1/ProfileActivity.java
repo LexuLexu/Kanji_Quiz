@@ -160,8 +160,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void go_to_questions (View v) {
 
-        Intent questionsIntent = new Intent(ProfileActivity.this, EndlessActivity.class);
-        startActivity(questionsIntent);
+        Intent levelChoiceIntent = new Intent(ProfileActivity.this, LevelChoiceActivity.class);
+        startActivity(levelChoiceIntent);
 
     }
 

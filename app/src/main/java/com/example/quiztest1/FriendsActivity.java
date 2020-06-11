@@ -58,8 +58,8 @@ public class FriendsActivity extends AppCompatActivity {
 
     public void go_to_questions (View view) {
 
-        Intent questionsIntent = new Intent(FriendsActivity.this, EndlessActivity.class);
-        startActivity(questionsIntent);
+        Intent levelChoiceIntent = new Intent(FriendsActivity.this, LevelChoiceActivity.class);
+        startActivity(levelChoiceIntent);
 
     }
 }
