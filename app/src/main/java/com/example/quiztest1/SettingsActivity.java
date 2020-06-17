@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -82,7 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         //});
 
-        Button logoutButton = findViewById(R.id.logoutButton);
+        TextView logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
