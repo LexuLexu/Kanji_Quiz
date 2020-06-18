@@ -56,13 +56,6 @@ public class LevelChoiceActivity extends AppCompatActivity {
         });
     }
 
-    public void go_to_questions (View v) {
-
-        //Intent levelChoiceIntent = new Intent(LevelChoiceActivity.this, LevelChoiceActivity.class);
-        //startActivity(levelChoiceIntent);
-
-    }
-
     public void go_to_quiz (View v) {
 
         startActivity(new Intent (getApplicationContext(), EndlessActivity.class));
