@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -18,7 +19,7 @@ import java.util.Random;
 
 public class EndlessActivity extends AppCompatActivity {
 
-    private String[] numbers_array;
+    private String[] kanji_array;
     private String[] words_array;
 
     private String question_number;
@@ -59,8 +60,8 @@ public class EndlessActivity extends AppCompatActivity {
         button_array[2] = answer3;
         button_array[3] = answer4;
 
-        numbers_array = getResources().getStringArray(R.array.Numbers);
-        words_array = getResources().getStringArray(R.array.Words);
+        kanji_array = getResources().getStringArray(R.array.N5_Kanji);
+        words_array = getResources().getStringArray(R.array.N5_English);
         getnewQuestion(questionView);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
@@ -109,9 +110,9 @@ public class EndlessActivity extends AppCompatActivity {
 
         Random rnd = new Random();
 
-        int arrayIndex = rnd.nextInt(numbers_array.length);
+        int arrayIndex = rnd.nextInt(kanji_array.length);
 
-        question_number = numbers_array[arrayIndex];
+        question_number = kanji_array[arrayIndex];
 
         questionView.setText(question_number);
 
@@ -201,6 +202,7 @@ public class EndlessActivity extends AppCompatActivity {
 
     public void incorrectAnswer () {
         scoreNumber.setTextColor(this.getResources().getColor(R.color.incorrect));
+        Toast.makeText(EndlessActivity.this, "Correct answer: " + question_word, Toast.LENGTH_SHORT).show();
     }
 
     public void go_to_questions (View view) {
