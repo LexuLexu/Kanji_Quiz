@@ -131,6 +131,88 @@
         <item>雨</item>
     </string-array>
 
+    <string-array name="N5_Kana">
+        <item>ニチ.ひ</item>
+        <item>イチ.ひと</item>
+        <item>コク.くに</item>
+        <item>ジン.ひと</item>
+        <item>ネン.とし</item>
+        <item>ダイ.おお</item>
+        <item>ジュウ.とお</item>
+        <item>ニ.ふた</item>
+        <item>ホン</item>
+        <item>チュウ.なか</item>
+        <item>チョウ.なが</item>
+        <item>でる</item>
+        <item>サン.ミ</item>
+        <item>ジ.とき</item>
+        <item>いき</item>
+        <item>ケン.みる</item>
+        <item>ゲツ</item>
+        <item>ゴ.あと</item>
+        <item>ゼン.まえ</item>
+        <item>セイ</item>
+        <item>ゴ.いつ</item>
+        <item>ケン.あいだ</item>
+        <item>ジョウ.あげる</item>
+        <item>トウ.ひがし</item>
+        <item>シ. よっ</item>
+        <item>コン.イ</item>
+        <item>キン.かね</item>
+        <item>キュウ.ここの</item>
+        <item>ニュウ.いれる</item>
+        <item>ガク</item>
+        <item>たかい</item>
+        <item>エン.まる</item>
+        <item>シ.こ</item>
+        <item>ガイ.そと</item>
+        <item>ハチ.やっ</item>
+        <item>ロク. むっ</item>
+        <item>ゲ.した</item>
+        <item>ライ.くる</item>
+        <item>キ</item>
+        <item>ショウ.ちいさい</item>
+        <item>シチ.なな</item>
+        <item>サン.やま</item>
+        <item>はなし</item>
+        <item>ジョ.おんな</item>
+        <item>ホク.きた</item>
+        <item>ゴ</item>
+        <item>ヒャク</item>
+        <item>ショ.かく</item>
+        <item>セン.さき</item>
+        <item>メイ.な</item>
+        <item>セン.かわ</item>
+        <item>セン</item>
+        <item>スイ.みず</item>
+        <item>ハン</item>
+        <item>ダン.おとこ</item>
+        <item>にし</item>
+        <item>デン</item>
+        <item>コウ</item>
+        <item>ご</item>
+        <item>ド</item>
+        <item>き</item>
+        <item>ブン.きく</item>
+        <item>ショク.たべる</item>
+        <item>シャ.くるま</item>
+        <item>なに</item>
+        <item>みなみ</item>
+        <item>マン</item>
+        <item>マイ</item>
+        <item>ハク.しろ</item>
+        <item>テン</item>
+        <item>はは</item>
+        <item>カ.ひ</item>
+        <item>みぎ</item>
+        <item>よむ</item>
+        <item>ユウ.とも</item>
+        <item>ひだり</item>
+        <item>キュウ.やすむ</item>
+        <item>ちち</item>
+        <item>あめ</item>
+    </string-array>
+
     <string-array name="N5_English">
         <item>sun</item>
         <item>one</item>

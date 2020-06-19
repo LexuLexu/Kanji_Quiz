@@ -56,9 +56,15 @@ public class LevelChoiceActivity extends AppCompatActivity {
         });
     }
 
-    public void go_to_quiz (View v) {
+    public void go_to_n5English (View v) {
 
-        startActivity(new Intent (getApplicationContext(), EndlessActivity.class));
+        startActivity(new Intent (getApplicationContext(), N5EnglishActivity.class));
+
+    }
+
+    public void go_to_n5Kana (View v) {
+
+        startActivity(new Intent (getApplicationContext(), N5KanaActivity.class));
 
     }
 }

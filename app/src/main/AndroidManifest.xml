@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizTest1">
-        <activity android:name=".LevelChoiceActivity"></activity>
+        <activity android:name=".LevelChoiceActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LeaderboardActivity" />
         <activity android:name=".LoginActivity">
@@ -24,7 +24,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".FriendsActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".EndlessActivity" />
+        <activity android:name=".N5EnglishActivity" />
+        <activity android:name=".N5KanaActivity" />
     </application>
 
 </manifest>

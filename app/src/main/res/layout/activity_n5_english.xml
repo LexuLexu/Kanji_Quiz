@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EndlessActivity">
+    tools:context=".N5EnglishActivity">
 
     <TextView
         android:id="@+id/QuestionView"
@@ -148,6 +148,7 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="go_to_questions"
             app:backgroundTint="@color/colorAccent"
             app:layout_anchor="@+id/BottomNavBar"
             app:layout_anchorGravity="top|center"

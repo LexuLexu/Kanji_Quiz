@@ -17,7 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.Random;
 
 
-public class EndlessActivity extends AppCompatActivity {
+public class N5EnglishActivity extends AppCompatActivity {
 
     private String[] kanji_array;
     private String[] words_array;
@@ -42,7 +42,7 @@ public class EndlessActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_endless);
+        setContentView(R.layout.activity_n5_english);
 
         questionView = findViewById(R.id.QuestionView);
 
@@ -75,22 +75,22 @@ public class EndlessActivity extends AppCompatActivity {
                 switch(item.getItemId()) {
 
                     case(R.id.ic_profile):
-                        Intent intent = new Intent(EndlessActivity.this, ProfileActivity.class);
+                        Intent intent = new Intent(N5EnglishActivity.this, ProfileActivity.class);
                         startActivity(intent);
                         break;
 
                     case(R.id.ic_friends):
-                        Intent intent2 = new Intent(EndlessActivity.this, FriendsActivity.class);
+                        Intent intent2 = new Intent(N5EnglishActivity.this, FriendsActivity.class);
                         startActivity(intent2);
                         break;
 
                     case(R.id.ic_leaderboard):
-                        Intent intent3 = new Intent(EndlessActivity.this, LeaderboardActivity.class);
+                        Intent intent3 = new Intent(N5EnglishActivity.this, LeaderboardActivity.class);
                         startActivity(intent3);
                         break;
 
                     case(R.id.ic_settings):
-                        Intent intent4 = new Intent(EndlessActivity.this, SettingsActivity.class);
+                        Intent intent4 = new Intent(N5EnglishActivity.this, SettingsActivity.class);
                         startActivity(intent4);
                         break;
 
@@ -202,12 +202,12 @@ public class EndlessActivity extends AppCompatActivity {
 
     public void incorrectAnswer () {
         scoreNumber.setTextColor(this.getResources().getColor(R.color.incorrect));
-        Toast.makeText(EndlessActivity.this, "Correct answer: " + question_word, Toast.LENGTH_SHORT).show();
+        Toast.makeText(N5EnglishActivity.this, "Correct answer: " + question_word, Toast.LENGTH_SHORT).show();
     }
 
     public void go_to_questions (View view) {
 
-        Intent levelChoiceIntent = new Intent(EndlessActivity.this, LevelChoiceActivity.class);
+        Intent levelChoiceIntent = new Intent(N5EnglishActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
 
     }
