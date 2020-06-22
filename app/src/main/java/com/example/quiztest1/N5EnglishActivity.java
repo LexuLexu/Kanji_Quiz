@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,8 @@ public class N5EnglishActivity extends AppCompatActivity {
 
     private Button correctButton;
 
+    private ProgressBar scoreBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,7 @@ public class N5EnglishActivity extends AppCompatActivity {
         questionView = findViewById(R.id.QuestionView);
 
         scoreNumber = findViewById(R.id.ScoreNumber);
+        scoreBar = findViewById(R.id.scoreBar);
 
         answer1 = findViewById(R.id.button1);
         answer2 = findViewById(R.id.button2);
@@ -196,8 +200,10 @@ public class N5EnglishActivity extends AppCompatActivity {
 
     public void correctAnswer() {
         scoreNumber.setTextColor(this.getResources().getColor(R.color.correct));
-        score++;
+        score+=10;
         scoreNumber.setText(Integer.toString(score));
+
+        updateScoreBar(10);
     }
 
     public void incorrectAnswer () {
@@ -206,9 +212,12 @@ public class N5EnglishActivity extends AppCompatActivity {
     }
 
     public void go_to_questions (View view) {
-
         Intent levelChoiceIntent = new Intent(N5EnglishActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
+    }
 
+    public void updateScoreBar(int score) {
+        int currentScore = scoreBar.getProgress();
+        scoreBar.setProgress(currentScore += score, true);
     }
 }
