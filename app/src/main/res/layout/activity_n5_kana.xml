@@ -28,7 +28,7 @@
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="128dp"
+        android:layout_width="156dp"
         android:layout_height="96dp"
         android:layout_marginBottom="24dp"
         android:background="@color/colorAccent"
@@ -44,7 +44,7 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="128dp"
+        android:layout_width="156dp"
         android:layout_height="96dp"
         android:layout_marginBottom="24dp"
         android:background="@color/colorAccent"
@@ -60,7 +60,7 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="128dp"
+        android:layout_width="156dp"
         android:layout_height="96dp"
         android:layout_marginBottom="48dp"
         android:background="@color/colorAccent"
@@ -76,7 +76,7 @@
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="128dp"
+        android:layout_width="156dp"
         android:layout_height="96dp"
         android:layout_marginBottom="48dp"
         android:background="@color/colorAccent"
@@ -90,40 +90,33 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button3" />
 
-    <TextView
-        android:id="@+id/ScoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Score:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ScoreNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="16dp"
-        android:text="0"
-        app:layout_constraintStart_toEndOf="@+id/ScoreText"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ProgressBar
         android:id="@+id/scoreBar"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="20dp"
-        android:layout_height="600dp"
+        android:layout_height="0dp"
         android:layout_centerInParent="true"
-        android:layout_marginStart="4dp"
+        android:layout_marginBottom="56dp"
         android:max="100"
         android:progress="0"
         android:progressDrawable="@drawable/progress_drawable_vertical"
-        app:layout_constraintBottom_toTopOf="@+id/BottomNavBarLayout"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/BottomNavBarLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/scoreBar2"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="20dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="56dp"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/progress_drawable_vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/BottomNavBarLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/BottomNavBarLayout"
@@ -173,5 +166,19 @@
             app:tint="@color/colorPrimaryDark" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <TextView
+        android:id="@+id/questionNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Question 1"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

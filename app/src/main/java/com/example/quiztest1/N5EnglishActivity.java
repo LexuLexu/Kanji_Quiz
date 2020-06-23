@@ -20,6 +20,8 @@ import java.util.Random;
 
 public class N5EnglishActivity extends AppCompatActivity {
 
+    private int questionNumber;
+
     private String[] kanji_array;
     private String[] words_array;
 
@@ -28,7 +30,6 @@ public class N5EnglishActivity extends AppCompatActivity {
 
     private TextView questionView;
 
-    private TextView scoreNumber;
     private int score;
 
     private Button answer1;
@@ -40,17 +41,20 @@ public class N5EnglishActivity extends AppCompatActivity {
 
     private Button correctButton;
 
-    private ProgressBar scoreBar;
+    private ProgressBar scoreBar, scoreBar2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_n5_english);
 
+        questionNumber = 0;
+        score = 0;
+
         questionView = findViewById(R.id.QuestionView);
 
-        scoreNumber = findViewById(R.id.ScoreNumber);
         scoreBar = findViewById(R.id.scoreBar);
+        scoreBar2 = findViewById(R.id.scoreBar2);
 
         answer1 = findViewById(R.id.button1);
         answer2 = findViewById(R.id.button2);
@@ -109,6 +113,16 @@ public class N5EnglishActivity extends AppCompatActivity {
     public void getnewQuestion (View view) {
 
         answer_question(view);
+
+        questionNumber++;
+
+        if (questionNumber > 10) {
+            Toast.makeText(N5EnglishActivity.this, "Your score: " + score, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(N5EnglishActivity.this, LevelChoiceActivity.class));
+        }
+
+        TextView titleText = findViewById(R.id.questionNumber);
+        titleText.setText("Question " + questionNumber);
 
         get_random_button();
 
@@ -199,15 +213,11 @@ public class N5EnglishActivity extends AppCompatActivity {
     }
 
     public void correctAnswer() {
-        scoreNumber.setTextColor(this.getResources().getColor(R.color.correct));
         score+=10;
-        scoreNumber.setText(Integer.toString(score));
-
         updateScoreBar(10);
     }
 
     public void incorrectAnswer () {
-        scoreNumber.setTextColor(this.getResources().getColor(R.color.incorrect));
         Toast.makeText(N5EnglishActivity.this, "Correct answer: " + question_word, Toast.LENGTH_SHORT).show();
     }
 
@@ -218,6 +228,8 @@ public class N5EnglishActivity extends AppCompatActivity {
 
     public void updateScoreBar(int score) {
         int currentScore = scoreBar.getProgress();
-        scoreBar.setProgress(currentScore += score, true);
+        int newScore = currentScore += score;
+        scoreBar.setProgress(newScore, true);
+        scoreBar2.setProgress(newScore, true);
     }
 }

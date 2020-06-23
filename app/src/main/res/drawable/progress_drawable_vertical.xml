@@ -9,7 +9,7 @@
             android:gravity="bottom">
             <shape>
                 <gradient
-                    android:startColor="@color/colorPrimaryDark"
+                    android:startColor="@color/colorPrimary"
                     android:centerColor="@color/colorPrimary"
                     android:endColor="@color/colorAccent"
                     android:angle="90" />
