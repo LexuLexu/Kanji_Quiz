@@ -2,6 +2,7 @@ package com.example.quiztest1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -117,43 +118,55 @@ public class N5EnglishActivity extends AppCompatActivity {
         questionNumber++;
 
         if (questionNumber > 10) {
-            Toast.makeText(N5EnglishActivity.this, "Your score: " + score, Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(N5EnglishActivity.this, LevelChoiceActivity.class));
+
+            CardView scorePromptCard = findViewById(R.id.scorePromptCard);
+            scorePromptCard.setVisibility(View.VISIBLE);
+
+            TextView scorePromptScore = findViewById(R.id.scorePromptScore);
+            scorePromptScore.setText(Integer.toString(score));
+
+            answer1.setClickable(false);
+            answer2.setClickable(false);
+            answer3.setClickable(false);
+            answer4.setClickable(false);
         }
 
-        TextView titleText = findViewById(R.id.questionNumber);
-        titleText.setText("Question " + questionNumber);
+        else {
 
-        get_random_button();
+            TextView titleText = findViewById(R.id.questionNumber);
+            titleText.setText("Question " + questionNumber);
 
-        Random rnd = new Random();
+            get_random_button();
 
-        int arrayIndex = rnd.nextInt(kanji_array.length);
+            Random rnd = new Random();
 
-        question_number = kanji_array[arrayIndex];
+            int arrayIndex = rnd.nextInt(kanji_array.length);
 
-        questionView.setText(question_number);
+            question_number = kanji_array[arrayIndex];
 
-        correctButton = get_random_button();
-        question_word = words_array[arrayIndex];
+            questionView.setText(question_number);
+
+            correctButton = get_random_button();
+            question_word = words_array[arrayIndex];
 
 
-        for (Button button : button_array) {
-
-            button.setText(words_array[rnd.nextInt(words_array.length)]);
-
-        }
-
-        correctButton.setText(question_word);
-
-        for (Button button : button_array) {
-
-            while (button != correctButton && button.getText() == question_word) {
+            for (Button button : button_array) {
 
                 button.setText(words_array[rnd.nextInt(words_array.length)]);
 
             }
 
+            correctButton.setText(question_word);
+
+            for (Button button : button_array) {
+
+                while (button != correctButton && button.getText() == question_word) {
+
+                    button.setText(words_array[rnd.nextInt(words_array.length)]);
+
+                }
+
+            }
         }
 
     }

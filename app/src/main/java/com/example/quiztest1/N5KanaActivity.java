@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -117,43 +118,56 @@ public class N5KanaActivity extends AppCompatActivity {
         questionNumber++;
 
         if (questionNumber > 10) {
-            Toast.makeText(N5KanaActivity.this, "Your score: " + score, Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(N5KanaActivity.this, LevelChoiceActivity.class));
-        }
 
-        TextView titleText = findViewById(R.id.questionNumber);
-        titleText.setText("Question " + questionNumber);
+            CardView scorePromptCard = findViewById(R.id.scorePromptCard);
+            scorePromptCard.setVisibility(View.VISIBLE);
 
-        get_random_button();
+            TextView scorePromptScore = findViewById(R.id.scorePromptScore);
+            scorePromptScore.setText(Integer.toString(score));
 
-        Random rnd = new Random();
-
-        int arrayIndex = rnd.nextInt(kanji_array.length);
-
-        question_number = kanji_array[arrayIndex];
-
-        questionView.setText(question_number);
-
-        correctButton = get_random_button();
-        question_word = kana_array[arrayIndex];
-
-
-        for (Button button : button_array) {
-
-            button.setText(kana_array[rnd.nextInt(kana_array.length)]);
+            answer1.setClickable(false);
+            answer2.setClickable(false);
+            answer3.setClickable(false);
+            answer4.setClickable(false);
 
         }
 
-        correctButton.setText(question_word);
+        else {
 
-        for (Button button : button_array) {
+            TextView titleText = findViewById(R.id.questionNumber);
+            titleText.setText("Question " + questionNumber);
 
-            while (button != correctButton && button.getText() == question_word) {
+            get_random_button();
+
+            Random rnd = new Random();
+
+            int arrayIndex = rnd.nextInt(kanji_array.length);
+
+            question_number = kanji_array[arrayIndex];
+
+            questionView.setText(question_number);
+
+            correctButton = get_random_button();
+            question_word = kana_array[arrayIndex];
+
+
+            for (Button button : button_array) {
 
                 button.setText(kana_array[rnd.nextInt(kana_array.length)]);
 
             }
 
+            correctButton.setText(question_word);
+
+            for (Button button : button_array) {
+
+                while (button != correctButton && button.getText() == question_word) {
+
+                    button.setText(kana_array[rnd.nextInt(kana_array.length)]);
+
+                }
+
+            }
         }
 
     }
@@ -228,7 +242,8 @@ public class N5KanaActivity extends AppCompatActivity {
 
     public void updateScoreBar(int score) {
         int currentScore = scoreBar.getProgress();
-        scoreBar.setProgress(currentScore += score, true);
-        scoreBar2.setProgress(currentScore += score, true);
+        int newScore = currentScore += score;
+        scoreBar.setProgress(newScore, true);
+        scoreBar2.setProgress(newScore, true);
     }
 }
