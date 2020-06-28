@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -81,6 +83,34 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(RegisterActivity.this, "Password must be longer than 6 characters", Toast.LENGTH_SHORT).show();
             System.out.println(password + " + " + confPassword);
             return false;
+        }
+    }
+
+    public void toggleHidePassword (View view) {
+
+        ImageView eye = findViewById(R.id.passwordHideEye);
+
+        if (passwordInput.getTransformationMethod() != null) {
+            passwordInput.setTransformationMethod(null);
+            eye.setImageResource(R.drawable.visibility_off_24px);
+        }
+        else {
+            passwordInput.setTransformationMethod(new PasswordTransformationMethod());
+            eye.setImageResource(R.drawable.visibility_24px);
+        }
+    }
+
+    public void toggleHideConfPassword (View view) {
+
+        ImageView eye2 = findViewById(R.id.passwordHideEye2);
+
+        if (confPasswordInput.getTransformationMethod() != null) {
+            confPasswordInput.setTransformationMethod(null);
+            eye2.setImageResource(R.drawable.visibility_off_24px);
+        }
+        else {
+            confPasswordInput.setTransformationMethod(new PasswordTransformationMethod());
+            eye2.setImageResource(R.drawable.visibility_24px);
         }
     }
 
