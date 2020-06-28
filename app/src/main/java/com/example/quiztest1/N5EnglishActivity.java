@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,10 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
-
 
 public class N5EnglishActivity extends AppCompatActivity {
 
@@ -56,8 +52,6 @@ public class N5EnglishActivity extends AppCompatActivity {
     private Button correctButton;
 
     private ProgressBar scoreBar, scoreBar2;
-
-    Map<String, User> userDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
