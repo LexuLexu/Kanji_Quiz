@@ -27,11 +27,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
+
+    public Toast myToast;
 
     public static final int GET_FROM_GALLERY = 3;
     public ImageView profilePic;
@@ -43,6 +47,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        myToast = Toast.makeText(ProfileActivity.this, "", Toast.LENGTH_SHORT);
 
         //SharedPreferences settingsPref = getApplicationContext().getSharedPreferences("Settings", 0);
         //setTheme(settingsPref.getBoolean("nightMode", false)? R.style.Theme_QuizTest1_Dark : R.style.Theme_QuizTest1);
@@ -82,10 +88,22 @@ public class ProfileActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                                    myToast.setText("Profile updated");
+                                    myToast.show();
+
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference usersRef = database.getReference("users");
+
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                    String uid = user.getUid();
+                                    String userName = user.getDisplayName();
+
+                                    usersRef.child(uid).child("userName").setValue(userName);
                                 }
                             }
                         });
+
             }
         });
 

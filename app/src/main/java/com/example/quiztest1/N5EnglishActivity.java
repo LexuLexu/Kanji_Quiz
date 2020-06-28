@@ -24,10 +24,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 
 public class N5EnglishActivity extends AppCompatActivity {
+
+    public Toast myToast;
 
     private int questionNumber;
 
@@ -40,6 +44,7 @@ public class N5EnglishActivity extends AppCompatActivity {
     private TextView questionView;
 
     private int score;
+    public int newScore;
 
     private Button answer1;
     private Button answer2;
@@ -52,13 +57,18 @@ public class N5EnglishActivity extends AppCompatActivity {
 
     private ProgressBar scoreBar, scoreBar2;
 
+    Map<String, User> userDetails;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_n5_english);
 
+        myToast = Toast.makeText(N5EnglishActivity.this, "", Toast.LENGTH_SHORT);
+
         questionNumber = 0;
         score = 0;
+        newScore = 0;
 
         questionView = findViewById(R.id.QuestionView);
 
@@ -137,6 +147,36 @@ public class N5EnglishActivity extends AppCompatActivity {
             answer2.setClickable(false);
             answer3.setClickable(false);
             answer4.setClickable(false);
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference usersRef = database.getReference("users");
+            DatabaseReference currentUserRef = usersRef.child(uid);
+
+            currentUserRef.child("score").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    if (dataSnapshot.getValue() != null) {
+                        int userPrevScore = dataSnapshot.getValue(int.class);
+                        newScore = userPrevScore + score;
+                    }
+                    else {
+                        newScore = score;
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    myToast.setText("Error: failed to read database");
+                    myToast.show();
+                }
+            });
         }
 
         else {
@@ -239,12 +279,29 @@ public class N5EnglishActivity extends AppCompatActivity {
     }
 
     public void incorrectAnswer () {
-        Toast.makeText(N5EnglishActivity.this, "Correct answer: " + question_word, Toast.LENGTH_SHORT).show();
+        myToast.setText("Correct answer: " + question_word);
+        myToast.show();
     }
 
     public void go_to_questions (View view) {
         Intent levelChoiceIntent = new Intent(N5EnglishActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
+    }
+
+    public void endQuizButton (View view) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        String userName = user.getDisplayName();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference usersRef = database.getReference("users");
+
+        usersRef.child(uid).child("score").setValue(newScore);
+        usersRef.child(uid).child("userName").setValue(userName);
+
+        Intent levelChoiceIntent = new Intent(N5EnglishActivity.this, LevelChoiceActivity.class);
+        startActivity(levelChoiceIntent);
+
     }
 
     public void updateScoreBar(int score) {

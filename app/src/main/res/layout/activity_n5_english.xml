@@ -242,7 +242,7 @@
                 android:backgroundTint="@color/colorAccent"
                 android:gravity="center_horizontal|center_vertical"
                 android:includeFontPadding="false"
-                android:onClick="go_to_questions"
+                android:onClick="endQuizButton"
                 android:padding="12dp"
                 android:text="OK"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"

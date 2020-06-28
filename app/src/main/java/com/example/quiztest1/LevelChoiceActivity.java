@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.logging.Level;
 
 public class LevelChoiceActivity extends AppCompatActivity {
 
@@ -65,6 +68,12 @@ public class LevelChoiceActivity extends AppCompatActivity {
     public void go_to_n5Kana (View v) {
 
         startActivity(new Intent (getApplicationContext(), N5KanaActivity.class));
+
+    }
+
+    public void notAvailable (View v) {
+
+        Toast.makeText(LevelChoiceActivity.this, "This level will be added in a future version", Toast.LENGTH_SHORT).show();
 
     }
 }
