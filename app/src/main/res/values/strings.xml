@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuizTest1</string>
+    <string name="app_name">Kanji Quiz</string>
 
     <string-array name="Frequency">
         <item>Daily</item>
