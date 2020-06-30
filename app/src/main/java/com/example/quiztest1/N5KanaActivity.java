@@ -1,7 +1,9 @@
 package com.example.quiztest1;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -134,6 +136,9 @@ public class N5KanaActivity extends AppCompatActivity {
             CardView scorePromptCard = findViewById(R.id.scorePromptCard);
             scorePromptCard.setVisibility(View.VISIBLE);
 
+            Button okButton = findViewById(R.id.okButton);
+            okButton.setVisibility(View.INVISIBLE);
+
             TextView scorePromptScore = findViewById(R.id.scorePromptScore);
             scorePromptScore.setText(Integer.toString(score));
 
@@ -171,6 +176,16 @@ public class N5KanaActivity extends AppCompatActivity {
                     myToast.show();
                 }
             });
+
+            Runnable r = new Runnable() {
+                @Override
+                public void run(){
+                    okButton.setVisibility(View.VISIBLE);
+                }
+            };
+
+            Handler h = new Handler();
+            h.postDelayed(r, 1000);
 
         }
 
@@ -271,11 +286,19 @@ public class N5KanaActivity extends AppCompatActivity {
     public void correctAnswer() {
         score+=10;
         updateScoreBar(10);
+
+        final MediaPlayer correctNoise = MediaPlayer.create(this, R.raw.right_answer);
+        correctNoise.seekTo(0);
+        correctNoise.start();
     }
 
     public void incorrectAnswer () {
         myToast.setText("Correct answer: " + question_word);
         myToast.show();
+
+        final MediaPlayer incorrectNoise = MediaPlayer.create(this, R.raw.wrong_answer);
+        incorrectNoise.seekTo(0);
+        incorrectNoise.start();
     }
 
     public void go_to_questions (View view) {
