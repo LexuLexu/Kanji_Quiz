@@ -7,6 +7,99 @@
     android:background="@color/background"
     tools:context=".LevelChoiceActivity">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/setNameCard"
+        android:layout_width="379dp"
+        android:layout_height="160dp"
+        android:elevation="14dp"
+        android:translationZ="8dp"
+        android:visibility="invisible"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toTopOf="@+id/BottomNavBarLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/goToProfileText"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:gravity="center_horizontal|center_vertical"
+                android:lines="3"
+                android:text="Please set your name in the Profile page"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/profileButton"
+                android:layout_width="190dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/colorAccent"
+                android:gravity="center_horizontal|center_vertical"
+                android:includeFontPadding="false"
+                android:onClick="go_to_profile"
+                android:padding="12dp"
+                android:text="Profile"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:iconPadding="8dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/noNameCover"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@color/background"
+        android:backgroundTint="@color/background"
+        android:elevation="6dp"
+        android:outlineProvider="none"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/endlessButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/endlessButton"
+        android:layout_width="260dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:includeFontPadding="false"
+        android:onClick="go_to_n5English"
+        android:padding="12dp"
+        android:text="Endless Challenge"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:iconPadding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/BottomNavBarLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/n5CardView" />
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/BottomNavBarLayout"
         android:layout_width="match_parent"
@@ -59,7 +152,7 @@
         android:id="@+id/n1CardView"
         android:layout_width="379dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp"
@@ -77,7 +170,7 @@
             <TextView
                 android:id="@+id/n1_view"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:text="N1"
@@ -88,7 +181,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="64dp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal">
@@ -102,7 +195,7 @@
                     android:includeFontPadding="false"
                     android:onClick="notAvailable"
                     android:padding="12dp"
-                    android:text="かなへ"
+                    android:text="かな"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
@@ -119,7 +212,7 @@
                     android:includeFontPadding="false"
                     android:onClick="notAvailable"
                     android:padding="12dp"
-                    android:text="To English"
+                    android:text="English"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
@@ -153,7 +246,7 @@
             <TextView
                 android:id="@+id/n2_view"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:text="N2"
@@ -164,7 +257,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="64dp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal">
@@ -178,7 +271,7 @@
                     android:includeFontPadding="false"
                     android:onClick="notAvailable"
                     android:padding="12dp"
-                    android:text="かなへ"
+                    android:text="かな"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
@@ -195,7 +288,7 @@
                     android:includeFontPadding="false"
                     android:onClick="notAvailable"
                     android:padding="12dp"
-                    android:text="To English"
+                    android:text="English"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
@@ -229,7 +322,7 @@
             <TextView
                 android:id="@+id/n3_view"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:text="N3"
@@ -240,7 +333,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="64dp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal">
@@ -254,7 +347,7 @@
                     android:includeFontPadding="false"
                     android:onClick="notAvailable"
                     android:padding="12dp"
-                    android:text="かなへ"
+                    android:text="かな"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
@@ -271,7 +364,7 @@
                     android:includeFontPadding="false"
                     android:onClick="notAvailable"
                     android:padding="12dp"
-                    android:text="To English"
+                    android:text="English"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
@@ -305,7 +398,7 @@
             <TextView
                 android:id="@+id/n4_view"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:text="N4"
@@ -316,7 +409,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="64dp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal">
@@ -330,7 +423,7 @@
                     android:includeFontPadding="false"
                     android:onClick="notAvailable"
                     android:padding="12dp"
-                    android:text="かなへ"
+                    android:text="かな"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
@@ -347,7 +440,7 @@
                     android:includeFontPadding="false"
                     android:onClick="notAvailable"
                     android:padding="12dp"
-                    android:text="To English"
+                    android:text="English"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
@@ -381,7 +474,7 @@
             <TextView
                 android:id="@+id/n5_view"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:text="N5"
@@ -392,7 +485,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="64dp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal">
@@ -406,7 +499,7 @@
                     android:includeFontPadding="false"
                     android:onClick="go_to_n5Kana"
                     android:padding="12dp"
-                    android:text="かなへ"
+                    android:text="かな"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
@@ -423,7 +516,7 @@
                     android:includeFontPadding="false"
                     android:onClick="go_to_n5English"
                     android:padding="12dp"
-                    android:text="To English"
+                    android:text="English"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
