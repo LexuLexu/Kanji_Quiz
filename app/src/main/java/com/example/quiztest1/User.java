@@ -4,13 +4,24 @@ public class User {
 
     public String userName;
     public int score;
+    public int ranking;
 
     public User() {
     }
 
-    public User(String userName, int score) {
+    public User(String userName, int score, int ranking) {
         this.userName = userName;
         this.score = score;
+        this.ranking = ranking;
+    }
+
+
+    public int getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
     }
 
     public String getUserName() {
