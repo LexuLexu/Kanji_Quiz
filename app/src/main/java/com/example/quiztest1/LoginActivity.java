@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -92,4 +93,29 @@ public class LoginActivity extends AppCompatActivity {
             eye.setImageResource(R.drawable.visibility_24px);
         }
     }
+
+    public void resetPassword (View view) {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        EditText emailInput = findViewById(R.id.emailInput);
+        String email = emailInput.getText().toString();
+
+        if (!email.equals("")) {
+            auth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("LoginActivity", "Password reset email sent.");
+                                Toast.makeText(LoginActivity.this, "Password reset email sent", Toast.LENGTH_LONG).show();
+
+                            }
+                        }
+                    });
+        }
+        else {
+            Toast.makeText(LoginActivity.this, "Please enter your email address", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
 }
