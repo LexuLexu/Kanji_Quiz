@@ -1,7 +1,5 @@
 <resources>
 
-    <!-- Base application theme. -->
-
     <style name="Theme.QuizTest1" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <item name="colorPrimary">@color/colorPrimary</item>

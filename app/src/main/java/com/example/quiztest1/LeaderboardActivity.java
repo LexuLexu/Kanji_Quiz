@@ -69,7 +69,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         sortedMap = new LinkedHashMap<>();
 
         userList = new HashMap<>();
-        userList.put("John Sandman", 0);
+        userList.put("Jon Sandman", 0);
 
         gatherTextViews();
         getUsers();
