@@ -85,6 +85,7 @@ public class N5KanaActivity extends AppCompatActivity {
 
         kanji_array = getResources().getStringArray(R.array.N5_Kanji);
         kana_array = getResources().getStringArray(R.array.N5_Kana);
+
         getnewQuestion(questionView);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);

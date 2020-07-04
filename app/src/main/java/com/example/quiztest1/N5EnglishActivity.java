@@ -85,6 +85,7 @@ public class N5EnglishActivity extends AppCompatActivity {
 
         kanji_array = getResources().getStringArray(R.array.N5_Kanji);
         words_array = getResources().getStringArray(R.array.N5_English);
+
         getnewQuestion(questionView);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
