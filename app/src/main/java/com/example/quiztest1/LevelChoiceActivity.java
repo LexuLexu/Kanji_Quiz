@@ -86,9 +86,14 @@ public class LevelChoiceActivity extends AppCompatActivity {
         startActivity(new Intent (getApplicationContext(), N5KanaActivity.class));
     }
 
+    public void go_to_endless (View v) {
+        startActivity(new Intent (getApplicationContext(), EndlessActivity.class));
+    }
+
     public void go_to_profile (View v) {
         startActivity(new Intent (getApplicationContext(), ProfileActivity.class));
     }
+
     public void notAvailable (View v) {
         Toast.makeText(LevelChoiceActivity.this, "This level will be added in a future version", Toast.LENGTH_SHORT).show();
     }

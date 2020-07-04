@@ -26,6 +26,7 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".N5EnglishActivity" />
         <activity android:name=".N5KanaActivity" />
+        <activity android:name=".EndlessActivity" />
     </application>
 
 </manifest>
