@@ -79,6 +79,8 @@ public class EndlessActivity extends AppCompatActivity {
         questionNumber = 0;
         score = 0;
 
+        userPrevScore = 0;
+
         questionView = findViewById(R.id.QuestionView);
 
         answer1 = findViewById(R.id.button1);
@@ -149,6 +151,19 @@ public class EndlessActivity extends AppCompatActivity {
 
         if (lives <= 0) {
 
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference usersRef = database.getReference("users");
+
+            if (score > userPrevScore) {
+                usersRef.child(uid).child("endlessMax").setValue(score);
+                System.out.println("Database updated");
+            }
+
+            else { System.out.println("score = " + score + "\nuserPrevScore = " + userPrevScore); }
+
             CardView scorePromptCard = findViewById(R.id.scorePromptCard);
             scorePromptCard.setVisibility(View.VISIBLE);
 
@@ -175,6 +190,32 @@ public class EndlessActivity extends AppCompatActivity {
         }
 
         else {
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference usersRef = database.getReference("users");
+            DatabaseReference currentUserRef = usersRef.child(uid);
+
+            currentUserRef.child("endlessMax").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    if (dataSnapshot.getValue() != null) {
+                        int databaseScore = dataSnapshot.getValue(int.class);
+                        userPrevScore = databaseScore;
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    myToast.setText("Error: failed to read database");
+                    myToast.show();
+                }
+            });
 
             TextView titleText = findViewById(R.id.questionNumber);
             titleText.setText("Question " + questionNumber);
@@ -319,38 +360,6 @@ public class EndlessActivity extends AppCompatActivity {
     }
 
     public void endQuizButton (View view) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference usersRef = database.getReference("users");
-        DatabaseReference currentUserRef = usersRef.child(uid);
-
-        currentUserRef.child("score").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                if (dataSnapshot.getValue() != null) {
-                    userPrevScore = dataSnapshot.getValue(int.class);
-
-                    if (score > userPrevScore) {
-                        usersRef.child(uid).child("endlessMax").setValue(score);
-                    }
-
-                }
-                else {
-                    newScore = score;
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                myToast.setText("Error: failed to read database");
-                myToast.show();
-            }
-        });
 
         Intent levelChoiceIntent = new Intent(EndlessActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
