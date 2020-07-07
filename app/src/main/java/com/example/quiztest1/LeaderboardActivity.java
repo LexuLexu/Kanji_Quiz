@@ -2,6 +2,7 @@ package com.example.quiztest1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,15 +42,29 @@ public class LeaderboardActivity extends AppCompatActivity {
     private String userScore;
     private String uid;
 
+    private List<HashMap.Entry<String, Integer>> list;
+
     private HashMap<String, Integer> userList;
-    private LinkedHashMap<String,Integer> sortedMap;
+    private HashMap<String, Integer> endlessUserList;
 
     private ArrayList<String> sortedUsers;
     private ArrayList<Integer> sortedScores;
 
+    private ArrayList<String> sortedEndlessUsers;
+    private ArrayList<Integer> sortedEndlessScores;
+
     private ArrayList<TextView> sbPosList;
     private ArrayList<TextView> sbNameList;
     private ArrayList<TextView> sbScoreList;
+
+    private ArrayList<TextView> endPosList;
+    private ArrayList<TextView> endNameList;
+    private ArrayList<TextView> endScoreList;
+
+    private String userPosNum;
+    private String userScoreNum;
+    private String endlessUserPosNum;
+    private String endlessUserScoreNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,77 +78,154 @@ public class LeaderboardActivity extends AppCompatActivity {
         sortedUsers = new ArrayList<>();
         sortedScores = new ArrayList<>();
 
+        sortedEndlessUsers = new ArrayList<>();
+        sortedEndlessScores = new ArrayList<>();
+
         sbPosList = new ArrayList<>();
         sbNameList = new ArrayList<>();
         sbScoreList = new ArrayList<>();
 
-        sortedMap = new LinkedHashMap<>();
+        endPosList = new ArrayList<>();
+        endNameList = new ArrayList<>();
+        endScoreList = new ArrayList<>();
 
         userList = new HashMap<>();
-        userList.put("Jon Sandman", 0);
+        endlessUserList = new HashMap<>();
 
-        gatherTextViews();
-        getUsers();
+        create_leaderboards();
 
         Button coverButton = findViewById(R.id.leaderButton);
-
         coverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                load_leaderboard(v);
+                load_leaderboards(v);
+                CardView endlessCard = findViewById(R.id.endlessCard);
+                endlessCard.setVisibility(View.INVISIBLE);
+                coverButton.setVisibility(View.INVISIBLE);
             }
         });
 
-        TextView userNameDisplay = findViewById(R.id.userName);
-        userNameDisplay.setText(userName);
+
+        Chip totalChip = findViewById(R.id.totalChip);
+        Chip endlessChip = findViewById(R.id.endlessChip);
+
+        totalChip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                View leaderboardCover = findViewById(R.id.leaderboardCover);
+
+                if (leaderboardCover.getVisibility() == View.INVISIBLE) {
+
+                    CardView totalCard = findViewById(R.id.leaderboardCard);
+                    CardView endlessCard = findViewById(R.id.endlessCard);
+                    totalCard.setVisibility(View.VISIBLE);
+                    endlessCard.setVisibility(View.INVISIBLE);
+
+                    TextView userPos = findViewById(R.id.userPos);
+                    userPos.setText(userPosNum);
+                    TextView userScore = findViewById(R.id.userScore);
+                    userScore.setText(userScoreNum);
+
+                    System.out.println("Switching to total view");
+
+                    if (totalCard.getVisibility() == View.VISIBLE) {
+                        System.out.println("totalCard is visible");
+                    }
+                    if (endlessCard.getVisibility() == View.VISIBLE) {
+                        System.out.println("endlessCard is visible");
+                    }
+                }
+            }
+        });
+
+        endlessChip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                View leaderboardCover = findViewById(R.id.leaderboardCover);
+
+                if (leaderboardCover.getVisibility() == View.INVISIBLE) {
+
+                    CardView totalCard = findViewById(R.id.leaderboardCard);
+                    CardView endlessCard = findViewById(R.id.endlessCard);
+                    totalCard.setVisibility(View.INVISIBLE);
+                    endlessCard.setVisibility(View.VISIBLE);
+
+                    TextView userPos = findViewById(R.id.userPos);
+                    userPos.setText(endlessUserPosNum);
+                    TextView userScore = findViewById(R.id.userScore);
+                    userScore.setText(endlessUserScoreNum);
+
+                    System.out.println("Switching to endless view");
+
+                    if (totalCard.getVisibility() == View.VISIBLE) {
+                        System.out.println("totalCard is visible");
+                    }
+                    if (endlessCard.getVisibility() == View.VISIBLE) {
+                        System.out.println("endlessCard is visible");
+                    }
+                }
+            }
+        });
+
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            Menu menu = bottomNavigationView.getMenu();
-            MenuItem menuItem = menu.getItem(3).setChecked(true);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(3).setChecked(true);
 
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch(item.getItemId()) {
+            switch(item.getItemId()) {
 
-                    case(R.id.ic_profile):
-                        Intent intent = new Intent(LeaderboardActivity.this, ProfileActivity.class);
-                        startActivity(intent);
-                        break;
+                case(R.id.ic_profile):
+                    Intent intent = new Intent(LeaderboardActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    break;
 
-                    case(R.id.ic_friends):
-                        Intent intent2 = new Intent(LeaderboardActivity.this, FriendsActivity.class);
-                        startActivity(intent2);
-                        break;
+                case(R.id.ic_friends):
+                    Intent intent2 = new Intent(LeaderboardActivity.this, FriendsActivity.class);
+                    startActivity(intent2);
+                    break;
 
-                    case(R.id.ic_leaderboard):
-                        //Intent intent3 = new Intent(LeaderboardActivity.this, LeaderboardActivity.class);
-                        //startActivity(intent3);
-                        break;
+                case(R.id.ic_leaderboard):
+                    //Intent intent3 = new Intent(LeaderboardActivity.this, LeaderboardActivity.class);
+                    //startActivity(intent3);
+                    break;
 
-                    case(R.id.ic_settings):
-                        Intent intent4 = new Intent(LeaderboardActivity.this, SettingsActivity.class);
-                        startActivity(intent4);
-                        break;
-
+                case(R.id.ic_settings):
+                    Intent intent4 = new Intent(LeaderboardActivity.this, SettingsActivity.class);
+                    startActivity(intent4);
+                    break;
                 }
-                return false;
-
+            return false;
             }
-
         });
 
     }
 
     public void go_to_questions (View view) {
-
         Intent levelChoiceIntent = new Intent(LeaderboardActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
+    }
 
+    public void create_leaderboards() {
+
+        gatherTextViews();
+        gatherEndlessTextViews();
+
+        getUsers();
+
+        TextView userNameDisplay = findViewById(R.id.userName);
+        userNameDisplay.setText(userName);
     }
 
     public void getUsers () {
+
+        userList.put("Jon Sandman", 0);
+        endlessUserList.put("Jon Sandman", 0);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersRef = database.getReference("users");
@@ -144,11 +237,17 @@ public class LeaderboardActivity extends AppCompatActivity {
 
                     String nameSnap = snapshot.child("userName").getValue(String.class);
                     Integer scoreSnap = snapshot.child("score").getValue(Integer.class);
+                    Integer endlessSnap = snapshot.child("endlessMax").getValue(Integer.class);
 
-                    userList.put(nameSnap,scoreSnap);
+                    if (scoreSnap == null) {
+                        userList.put(nameSnap, 0);
+                    }
+                    if (endlessSnap == null) {
+                        endlessUserList.put(nameSnap, 0);
+                    }
 
-                    System.out.println(snapshot.child("userName").getValue(String.class) + " added to Map\n" +
-                    snapshot.child("score").getValue(Integer.class) + " added to Map");
+                    userList.put(nameSnap, scoreSnap);
+                    endlessUserList.put(nameSnap, endlessSnap);
 
                 }
             }
@@ -177,14 +276,48 @@ public class LeaderboardActivity extends AppCompatActivity {
             sortedScores.add((entry.getValue()));
 
             if (entry.getKey().equals(userName)) {
+                userPosNum = Integer.toString(sortedUsers.indexOf(userName)+1);
                 TextView userPos = findViewById(R.id.userPos);
-                userPos.setText(Integer.toString((sortedUsers.indexOf(userName)+1)));
+                userPos.setText(userPosNum);
 
+                userScoreNum = Integer.toString(entry.getValue());
                 TextView userScore = findViewById(R.id.userScore);
-                userScore.setText(Integer.toString(entry.getValue()));
+                userScore.setText(userScoreNum);
             }
+        }
+    }
 
+    public void sortEndlessUsers (List<HashMap.Entry<String, Integer>> list) {
 
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2) {
+                return (o2.getValue()).compareTo(o1.getValue());
+            }
+        });
+
+        for (Map.Entry<String, Integer> entry : list) {
+            sortedEndlessUsers.add((entry.getKey()));
+            sortedEndlessScores.add((entry.getValue()));
+
+            if (entry.getKey().equals(userName)) {
+                endlessUserPosNum = Integer.toString(sortedEndlessUsers.indexOf(userName)+1);
+                endlessUserScoreNum = Integer.toString(entry.getValue());
+            }
+        }
+    }
+
+    public void clearLeaderBoard() {
+
+        for (int i = 0; i < 10; i++) {
+
+            TextView sbPos = sbPosList.get(i);
+            TextView sbName = sbNameList.get(i);
+            TextView sbScore = sbScoreList.get(i);
+
+            sbPos.setText("");
+            sbName.setText("");
+            sbScore.setText("");
         }
     }
 
@@ -199,9 +332,21 @@ public class LeaderboardActivity extends AppCompatActivity {
             sbPos.setText(String.valueOf(i+1));
             sbName.setText(sortedUsers.get(i));
             sbScore.setText(sortedScores.get(i).toString());
-
         }
+    }
 
+    public void outputToEndlessBoard() {
+
+        for (int i = 0; i < sortedEndlessUsers.size(); i++) {
+
+            TextView endPos = endPosList.get(i);
+            TextView endName = endNameList.get(i);
+            TextView endScore = endScoreList.get(i);
+
+            endPos.setText(String.valueOf(i+1));
+            endName.setText(sortedEndlessUsers.get(i));
+            endScore.setText(sortedEndlessScores.get(i).toString());
+        }
     }
 
     public void gatherTextViews(){
@@ -274,15 +419,85 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     }
 
-    public void load_leaderboard (View v) {
+    public void gatherEndlessTextViews(){
+
+        TextView endPos1 = findViewById(R.id.endPos1);
+        TextView endPos2 = findViewById(R.id.endPos2);
+        TextView endPos3 = findViewById(R.id.endPos3);
+        TextView endPos4 = findViewById(R.id.endPos4);
+        TextView endPos5 = findViewById(R.id.endPos5);
+        TextView endPos6 = findViewById(R.id.endPos6);
+        TextView endPos7 = findViewById(R.id.endPos7);
+        TextView endPos8 = findViewById(R.id.endPos8);
+        TextView endPos9 = findViewById(R.id.endPos9);
+        TextView endPos10 = findViewById(R.id.endPos10);
+
+        endPosList.add(endPos1);
+        endPosList.add(endPos2);
+        endPosList.add(endPos3);
+        endPosList.add(endPos4);
+        endPosList.add(endPos5);
+        endPosList.add(endPos6);
+        endPosList.add(endPos7);
+        endPosList.add(endPos8);
+        endPosList.add(endPos9);
+        endPosList.add(endPos10);
+
+        TextView endName1 = findViewById(R.id.endUser1);
+        TextView endName2 = findViewById(R.id.endUser2);
+        TextView endName3 = findViewById(R.id.endUser3);
+        TextView endName4 = findViewById(R.id.endUser4);
+        TextView endName5 = findViewById(R.id.endUser5);
+        TextView endName6 = findViewById(R.id.endUser6);
+        TextView endName7 = findViewById(R.id.endUser7);
+        TextView endName8 = findViewById(R.id.endUser8);
+        TextView endName9 = findViewById(R.id.endUser9);
+        TextView endName10 = findViewById(R.id.endUser10);
+
+        endNameList.add(endName1);
+        endNameList.add(endName2);
+        endNameList.add(endName3);
+        endNameList.add(endName4);
+        endNameList.add(endName5);
+        endNameList.add(endName6);
+        endNameList.add(endName7);
+        endNameList.add(endName8);
+        endNameList.add(endName9);
+        endNameList.add(endName10);
+
+        TextView endScore1 = findViewById(R.id.endScore1);
+        TextView endScore2 = findViewById(R.id.endScore2);
+        TextView endScore3 = findViewById(R.id.endScore3);
+        TextView endScore4 = findViewById(R.id.endScore4);
+        TextView endScore5 = findViewById(R.id.endScore5);
+        TextView endScore6 = findViewById(R.id.endScore6);
+        TextView endScore7 = findViewById(R.id.endScore7);
+        TextView endScore8 = findViewById(R.id.endScore8);
+        TextView endScore9 = findViewById(R.id.endScore9);
+        TextView endScore10 = findViewById(R.id.endScore10);
+
+        endScoreList.add(endScore1);
+        endScoreList.add(endScore2);
+        endScoreList.add(endScore3);
+        endScoreList.add(endScore4);
+        endScoreList.add(endScore5);
+        endScoreList.add(endScore6);
+        endScoreList.add(endScore7);
+        endScoreList.add(endScore8);
+        endScoreList.add(endScore9);
+        endScoreList.add(endScore10);
+
+    }
+
+
+
+    public void load_leaderboards (View v) {
 
         System.out.println(userList);
+        System.out.println(endlessUserList);
 
         View leaderboardCover = findViewById(R.id.leaderboardCover);
-        Button coverButton = findViewById(R.id.leaderButton);
-
         leaderboardCover.setVisibility(View.INVISIBLE);
-        coverButton.setVisibility(View.INVISIBLE);
 
         List<HashMap.Entry<String, Integer>> list = new LinkedList<>(userList.entrySet());
         sortUsers(list);
@@ -299,6 +514,25 @@ public class LeaderboardActivity extends AppCompatActivity {
             }
         }
         for (TextView view : sbScoreList) {
+            if (view.getText().equals("score")) {
+                view.setText("");
+            }
+        }
+        List<HashMap.Entry<String, Integer>> endlessList = new LinkedList<>(endlessUserList.entrySet());
+        sortEndlessUsers(endlessList);
+        outputToEndlessBoard();
+
+        for (TextView view : endPosList) {
+            if (view.getText().equals("pos")) {
+                view.setText("");
+            }
+        }
+        for (TextView view : endNameList) {
+            if (view.getText().equals("name")) {
+                view.setText("");
+            }
+        }
+        for (TextView view : endScoreList) {
             if (view.getText().equals("score")) {
                 view.setText("");
             }
