@@ -95,6 +95,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         create_leaderboards();
 
         Button coverButton = findViewById(R.id.leaderButton);
+        coverButton.setVisibility(View.VISIBLE);
         coverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -203,7 +204,6 @@ public class LeaderboardActivity extends AppCompatActivity {
             return false;
             }
         });
-
     }
 
     public void go_to_questions (View view) {

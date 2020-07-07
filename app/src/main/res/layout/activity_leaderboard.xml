@@ -45,26 +45,6 @@
 
     </com.google.android.material.chip.ChipGroup>
 
-    <Button
-        android:id="@+id/leaderButton"
-        android:layout_width="209dp"
-        android:layout_height="60dp"
-        android:backgroundTint="@color/colorAccent"
-        android:elevation="2dp"
-        android:includeFontPadding="false"
-        android:padding="12dp"
-        android:text="View Leaderboard"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:translationZ="5dp"
-        app:iconPadding="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/leaderboardCard"
-        app:layout_constraintEnd_toEndOf="@+id/leaderboardCard"
-        app:layout_constraintStart_toStartOf="@+id/leaderboardCard"
-        app:layout_constraintTop_toTopOf="@+id/leaderboardCard" />
-
     <TextView
         android:id="@+id/leaderboardText"
         android:layout_width="wrap_content"
@@ -84,14 +64,33 @@
         android:layout_height="0dp"
         android:background="@color/background"
         android:backgroundTint="@color/background"
-        android:elevation="4dp"
         android:outlineProvider="none"
-        android:translationZ="2dp"
+        android:translationZ="6dp"
         app:layout_constraintBottom_toTopOf="@+id/userLeaderCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/chipGroup" />
+
+    <Button
+        android:id="@+id/leaderButton"
+        android:layout_width="129dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="18dp"
+        android:backgroundTint="@color/colorAccent"
+        android:includeFontPadding="false"
+        android:padding="12dp"
+        android:text="View"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:translationZ="8dp"
+        android:visibility="visible"
+        app:iconPadding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/leaderboardCard"
