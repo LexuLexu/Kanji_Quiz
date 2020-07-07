@@ -239,11 +239,14 @@ public class LeaderboardActivity extends AppCompatActivity {
                     Integer scoreSnap = snapshot.child("score").getValue(Integer.class);
                     Integer endlessSnap = snapshot.child("endlessMax").getValue(Integer.class);
 
+                    if (nameSnap == null) {
+                        nameSnap = "";
+                    }
                     if (scoreSnap == null) {
-                        userList.put(nameSnap, 0);
+                        scoreSnap = 0;
                     }
                     if (endlessSnap == null) {
-                        endlessUserList.put(nameSnap, 0);
+                        endlessSnap = 0;
                     }
 
                     userList.put(nameSnap, scoreSnap);
