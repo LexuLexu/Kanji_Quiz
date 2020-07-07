@@ -160,4 +160,8 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(new Intent (SettingsActivity.this, AboutActivity.class));
     }
 
+    public void go_to_FAQ (View view) {
+        startActivity(new Intent (SettingsActivity.this, FAQActivity.class));
+    }
+
 }
