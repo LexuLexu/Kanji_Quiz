@@ -3,6 +3,7 @@ package com.example.quiztest1;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -151,9 +152,12 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void go_to_questions (View view) {
-
         Intent levelChoiceIntent = new Intent(SettingsActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
+    }
+
+    public void go_to_about (View view) {
+        startActivity(new Intent (SettingsActivity.this, AboutActivity.class));
     }
 
 }
