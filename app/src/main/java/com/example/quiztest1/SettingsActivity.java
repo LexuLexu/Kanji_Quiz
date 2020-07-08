@@ -34,6 +34,14 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        Switch muteSwitch = findViewById(R.id.muteSoundsSwitch);
+        if (Global.soundMuted == true) {
+            muteSwitch.setChecked(true);
+        }
+        else {
+            muteSwitch.setChecked(false);
+        }
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             Menu menu = bottomNavigationView.getMenu();
@@ -149,6 +157,17 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void mute_sounds (View view) {
+        if (Global.soundMuted == true) {
+            Global.soundMuted = false;
+            System.out.println("Sound unmuted.");
+        }
+        else {
+            Global.soundMuted = true;
+            System.out.println("Sound muted.");
+        }
     }
 
     public void go_to_questions (View view) {

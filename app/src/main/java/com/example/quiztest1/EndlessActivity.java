@@ -335,9 +335,11 @@ public class EndlessActivity extends AppCompatActivity {
     public void correctAnswer() {
         score+=1;
 
-        final MediaPlayer correctNoise = MediaPlayer.create(this, R.raw.right_answer);
-        correctNoise.seekTo(0);
-        correctNoise.start();
+        if (!Global.soundMuted) {
+            final MediaPlayer correctNoise = MediaPlayer.create(this, R.raw.right_answer);
+            correctNoise.seekTo(0);
+            correctNoise.start();
+        }
     }
 
     public void incorrectAnswer () {
@@ -349,9 +351,11 @@ public class EndlessActivity extends AppCompatActivity {
         ImageView heart = findViewById(R.id.lives_heart_1);
         heart.setImageResource(R.drawable.favorite_border_24px);
 
-        final MediaPlayer incorrectNoise = MediaPlayer.create(this, R.raw.wrong_answer);
-        incorrectNoise.seekTo(0);
-        incorrectNoise.start();
+        if (!Global.soundMuted) {
+            final MediaPlayer incorrectNoise = MediaPlayer.create(this, R.raw.wrong_answer);
+            incorrectNoise.seekTo(0);
+            incorrectNoise.start();
+        }
     }
 
     public void go_to_questions (View view) {
@@ -360,6 +364,8 @@ public class EndlessActivity extends AppCompatActivity {
     }
 
     public void endQuizButton (View view) {
+
+        view.setVisibility(View.INVISIBLE);
 
         Intent levelChoiceIntent = new Intent(EndlessActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);

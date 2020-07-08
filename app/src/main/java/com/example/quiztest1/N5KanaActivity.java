@@ -288,18 +288,22 @@ public class N5KanaActivity extends AppCompatActivity {
         score+=10;
         updateScoreBar(10);
 
-        final MediaPlayer correctNoise = MediaPlayer.create(this, R.raw.right_answer);
-        correctNoise.seekTo(0);
-        correctNoise.start();
+        if (!Global.soundMuted) {
+            final MediaPlayer correctNoise = MediaPlayer.create(this, R.raw.right_answer);
+            correctNoise.seekTo(0);
+            correctNoise.start();
+        }
     }
 
     public void incorrectAnswer () {
         myToast.setText("Correct answer: " + question_word);
         myToast.show();
 
-        final MediaPlayer incorrectNoise = MediaPlayer.create(this, R.raw.wrong_answer);
-        incorrectNoise.seekTo(0);
-        incorrectNoise.start();
+        if (!Global.soundMuted) {
+            final MediaPlayer incorrectNoise = MediaPlayer.create(this, R.raw.wrong_answer);
+            incorrectNoise.seekTo(0);
+            incorrectNoise.start();
+        }
     }
 
     public void go_to_questions (View view) {
@@ -317,6 +321,8 @@ public class N5KanaActivity extends AppCompatActivity {
 
         usersRef.child(uid).child("score").setValue(newScore);
         usersRef.child(uid).child("userName").setValue(userName);
+
+        view.setVisibility(View.INVISIBLE);
 
         Intent levelChoiceIntent = new Intent(N5KanaActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
