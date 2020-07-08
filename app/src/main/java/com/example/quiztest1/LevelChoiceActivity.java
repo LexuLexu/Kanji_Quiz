@@ -3,6 +3,7 @@ package com.example.quiztest1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -25,6 +26,14 @@ public class LevelChoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_choice);
+
+        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        if (Global.darkMode == true) {
+            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+        }
+        else {
+            mainLayout.setBackgroundColor(getColor(R.color.background));
+        }
 
         CardView setNameCard = findViewById(R.id.setNameCard);
         View noNameCover = findViewById(R.id.noNameCover);

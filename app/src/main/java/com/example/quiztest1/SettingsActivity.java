@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,11 +29,16 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //SharedPreferences settingsPref = getApplicationContext().getSharedPreferences("Settings", 0);
-        //setTheme(settingsPref.getBoolean("nightMode", false)? R.style.Theme_QuizTest1_Dark : R.style.Theme_QuizTest1);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        if (Global.darkMode == true) {
+            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+        }
+        else {
+            mainLayout.setBackgroundColor(getColor(R.color.background));
+        }
 
         Switch muteSwitch = findViewById(R.id.muteSoundsSwitch);
         if (Global.soundMuted == true) {
@@ -40,6 +46,14 @@ public class SettingsActivity extends AppCompatActivity {
         }
         else {
             muteSwitch.setChecked(false);
+        }
+
+        Switch darkModeSwitch = findViewById(R.id.nightModeSwitch);
+        if (Global.darkMode == true) {
+            darkModeSwitch.setChecked(true);
+        }
+        else {
+            darkModeSwitch.setChecked(false);
         }
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
@@ -167,6 +181,17 @@ public class SettingsActivity extends AppCompatActivity {
         else {
             Global.soundMuted = true;
             System.out.println("Sound muted.");
+        }
+    }
+
+    public void toggle_dark_mode (View view) {
+        if (Global.darkMode == true) {
+            Global.darkMode = false;
+            System.out.println("Dark mode disabled.");
+        }
+        else {
+            Global.darkMode = true;
+            System.out.println("Dark mode enabled.");
         }
     }
 

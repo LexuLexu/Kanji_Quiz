@@ -3,6 +3,7 @@ package com.example.quiztest1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -63,6 +64,14 @@ public class N5EnglishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_n5_english);
 
         myToast = Toast.makeText(N5EnglishActivity.this, "", Toast.LENGTH_SHORT);
+
+        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        if (Global.darkMode == true) {
+            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+        }
+        else {
+            mainLayout.setBackgroundColor(getColor(R.color.background));
+        }
 
         questionNumber = 0;
         score = 0;

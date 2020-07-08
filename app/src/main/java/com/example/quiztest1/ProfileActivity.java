@@ -2,6 +2,7 @@ package com.example.quiztest1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -50,8 +51,15 @@ public class ProfileActivity extends AppCompatActivity {
 
         myToast = Toast.makeText(ProfileActivity.this, "", Toast.LENGTH_SHORT);
 
-        //SharedPreferences settingsPref = getApplicationContext().getSharedPreferences("Settings", 0);
-        //setTheme(settingsPref.getBoolean("nightMode", false)? R.style.Theme_QuizTest1_Dark : R.style.Theme_QuizTest1);
+        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        if (Global.darkMode == true) {
+            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+            nameViewText = findViewById(R.id.nameView);
+            nameViewText.setTextColor(getColor(R.color.colorAccent));
+        }
+        else {
+            mainLayout.setBackgroundColor(getColor(R.color.background));
+        }
 
         nameViewText = (EditText) findViewById(R.id.nameView);
 
