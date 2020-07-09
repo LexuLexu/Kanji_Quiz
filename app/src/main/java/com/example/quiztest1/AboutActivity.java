@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,8 +22,10 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        TextView text1 = findViewById(R.id.aboutText);
         if (Global.darkMode == true) {
             mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+            text1.setTextColor(getColor(R.color.colorAccent));
         }
         else {
             mainLayout.setBackgroundColor(getColor(R.color.background));

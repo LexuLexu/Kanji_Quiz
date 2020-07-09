@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -28,8 +29,11 @@ public class LevelChoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_level_choice);
 
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        Button endlessButton = findViewById(R.id.endlessButton);
         if (Global.darkMode == true) {
             mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+            endlessButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimary));
+
         }
         else {
             mainLayout.setBackgroundColor(getColor(R.color.background));

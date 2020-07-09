@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,8 +21,10 @@ public class FriendsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_friends);
 
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        TextView text1 = findViewById(R.id.friendsText);
         if (Global.darkMode == true) {
             mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+            text1.setTextColor(getColor(R.color.colorAccent));
         }
         else {
             mainLayout.setBackgroundColor(getColor(R.color.background));

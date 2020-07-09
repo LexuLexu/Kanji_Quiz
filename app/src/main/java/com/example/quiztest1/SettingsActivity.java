@@ -33,8 +33,14 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        TextView text1 = findViewById(R.id.settingsText);
+        TextView text2 = findViewById(R.id.remindersText);
+        TextView text3 = findViewById(R.id.moreInfoText);
         if (Global.darkMode == true) {
             mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+            text1.setTextColor(getColor(R.color.colorAccent));
+            text2.setTextColor(getColor(R.color.colorAccent));
+            text3.setTextColor(getColor(R.color.colorAccent));
         }
         else {
             mainLayout.setBackgroundColor(getColor(R.color.background));
