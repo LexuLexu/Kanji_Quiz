@@ -76,12 +76,11 @@ public class RegisterActivity extends AppCompatActivity {
         password = passwordInput.getText().toString().trim();
         confPassword = confPasswordInput.getText().toString().trim();
 
-        if (password.equals(confPassword) && password.length() > 6) {
+        if (password.equals(confPassword) && password.length() > 6 && !password.equals(email)) {
             return true;
         }
         else {
             Toast.makeText(RegisterActivity.this, "Password must be longer than 6 characters", Toast.LENGTH_SHORT).show();
-            System.out.println(password + " + " + confPassword);
             return false;
         }
     }

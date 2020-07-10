@@ -99,6 +99,14 @@ public class LevelChoiceActivity extends AppCompatActivity {
         startActivity(new Intent (getApplicationContext(), N5KanaActivity.class));
     }
 
+    public void go_to_n4English (View v) {
+        startActivity(new Intent (getApplicationContext(), N4EnglishActivity.class));
+    }
+
+    public void go_to_n4Kana (View v) {
+        startActivity(new Intent (getApplicationContext(), N4KanaActivity.class));
+    }
+
     public void go_to_endless (View v) {
         startActivity(new Intent (getApplicationContext(), EndlessActivity.class));
     }
