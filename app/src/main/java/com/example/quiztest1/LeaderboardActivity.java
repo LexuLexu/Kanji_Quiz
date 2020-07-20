@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.Menu;
@@ -115,6 +116,10 @@ public class LeaderboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 load_leaderboards(v);
+
+                View leaderboardCover = findViewById(R.id.leaderboardCover);
+                leaderboardCover.setVisibility(View.INVISIBLE);
+
                 CardView endlessCard = findViewById(R.id.endlessCard);
                 endlessCard.setVisibility(View.INVISIBLE);
                 coverButton.setVisibility(View.INVISIBLE);
@@ -219,6 +224,22 @@ public class LeaderboardActivity extends AppCompatActivity {
             return false;
             }
         });
+
+        Handler handler = new Handler();
+        int delay = 100; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+
+                clearEndlessBoard();
+                clearLeaderBoard();
+
+                load_leaderboards();
+
+                System.out.println("leaderboard updated");
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
     }
 
     public void go_to_questions (View view) {
@@ -289,18 +310,26 @@ public class LeaderboardActivity extends AppCompatActivity {
             }
         });
 
+        sortedUsers.clear();
+        sortedScores.clear();
+
         for (Map.Entry<String, Integer> entry : list) {
             sortedUsers.add((entry.getKey()));
             sortedScores.add((entry.getValue()));
 
             if (entry.getKey().equals(userName)) {
-                userPosNum = Integer.toString(sortedUsers.indexOf(userName)+1);
-                TextView userPos = findViewById(R.id.userPos);
-                userPos.setText(userPosNum);
 
-                userScoreNum = Integer.toString(entry.getValue());
-                TextView userScore = findViewById(R.id.userScore);
-                userScore.setText(userScoreNum);
+                Chip totalChip = findViewById(R.id.totalChip);
+                if (totalChip.isChecked()) {
+
+                    userPosNum = Integer.toString(sortedUsers.indexOf(userName) + 1);
+                    TextView userPos = findViewById(R.id.userPos);
+                    userPos.setText(userPosNum);
+
+                    userScoreNum = Integer.toString(entry.getValue());
+                    TextView userScore = findViewById(R.id.userScore);
+                    userScore.setText(userScoreNum);
+                }
             }
         }
     }
@@ -314,6 +343,9 @@ public class LeaderboardActivity extends AppCompatActivity {
             }
         });
 
+        sortedEndlessUsers.clear();
+        sortedEndlessScores.clear();
+
         for (Map.Entry<String, Integer> entry : list) {
             sortedEndlessUsers.add((entry.getKey()));
             sortedEndlessScores.add((entry.getValue()));
@@ -321,6 +353,17 @@ public class LeaderboardActivity extends AppCompatActivity {
             if (entry.getKey().equals(userName)) {
                 endlessUserPosNum = Integer.toString(sortedEndlessUsers.indexOf(userName)+1);
                 endlessUserScoreNum = Integer.toString(entry.getValue());
+
+                Chip endlessChip = findViewById(R.id.endlessChip);
+                if (endlessChip.isChecked()) {
+
+                    TextView endlessUserPos = findViewById(R.id.userPos);
+                    endlessUserPos.setText(endlessUserPosNum);
+
+                    endlessUserScoreNum = Integer.toString(entry.getValue());
+                    TextView endlessUserScore = findViewById(R.id.userScore);
+                    endlessUserScore.setText(endlessUserScoreNum);
+                }
             }
         }
     }
@@ -339,6 +382,20 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    public void clearEndlessBoard() {
+
+        for (int i = 0; i < 10; i++) {
+
+            TextView endPos = endPosList.get(i);
+            TextView endName = endNameList.get(i);
+            TextView endScore = endScoreList.get(i);
+
+            endPos.setText("");
+            endName.setText("");
+            endScore.setText("");
+        }
+    }
+
     public void outputToLeaderBoard() {
 
         for (int i = 0; i < sortedUsers.size(); i++) {
@@ -347,9 +404,12 @@ public class LeaderboardActivity extends AppCompatActivity {
             TextView sbName = sbNameList.get(i);
             TextView sbScore = sbScoreList.get(i);
 
-            sbPos.setText(String.valueOf(i+1));
-            sbName.setText(sortedUsers.get(i));
-            sbScore.setText(sortedScores.get(i).toString());
+            Chip leaderChip = findViewById(R.id.totalChip);
+            if (leaderChip.isChecked()) {
+                sbPos.setText(String.valueOf(i+1));
+                sbName.setText(sortedUsers.get(i));
+                sbScore.setText(sortedScores.get(i).toString());
+            }
         }
     }
 
@@ -361,9 +421,12 @@ public class LeaderboardActivity extends AppCompatActivity {
             TextView endName = endNameList.get(i);
             TextView endScore = endScoreList.get(i);
 
-            endPos.setText(String.valueOf(i+1));
-            endName.setText(sortedEndlessUsers.get(i));
-            endScore.setText(sortedEndlessScores.get(i).toString());
+            Chip endlessChip = findViewById(R.id.endlessChip);
+            if (endlessChip.isChecked()) {
+                endPos.setText(String.valueOf(i+1));
+                endName.setText(sortedEndlessUsers.get(i));
+                endScore.setText(sortedEndlessScores.get(i).toString());
+            }
         }
     }
 
@@ -514,8 +577,50 @@ public class LeaderboardActivity extends AppCompatActivity {
         System.out.println(userList);
         System.out.println(endlessUserList);
 
-        View leaderboardCover = findViewById(R.id.leaderboardCover);
-        leaderboardCover.setVisibility(View.INVISIBLE);
+        List<HashMap.Entry<String, Integer>> list = new LinkedList<>(userList.entrySet());
+        sortUsers(list);
+        outputToLeaderBoard();
+
+        for (TextView view : sbPosList) {
+            if (view.getText().equals("pos")) {
+                view.setText("");
+            }
+        }
+        for (TextView view : sbNameList) {
+            if (view.getText().equals("name")) {
+                view.setText("");
+            }
+        }
+        for (TextView view : sbScoreList) {
+            if (view.getText().equals("score")) {
+                view.setText("");
+            }
+        }
+        List<HashMap.Entry<String, Integer>> endlessList = new LinkedList<>(endlessUserList.entrySet());
+        sortEndlessUsers(endlessList);
+        outputToEndlessBoard();
+
+        for (TextView view : endPosList) {
+            if (view.getText().equals("pos")) {
+                view.setText("");
+            }
+        }
+        for (TextView view : endNameList) {
+            if (view.getText().equals("name")) {
+                view.setText("");
+            }
+        }
+        for (TextView view : endScoreList) {
+            if (view.getText().equals("score")) {
+                view.setText("");
+            }
+        }
+    }
+
+    public void load_leaderboards () {
+
+        System.out.println(userList);
+        System.out.println(endlessUserList);
 
         List<HashMap.Entry<String, Integer>> list = new LinkedList<>(userList.entrySet());
         sortUsers(list);
