@@ -167,6 +167,10 @@ public class N5KanaActivity extends AppCompatActivity {
             DatabaseReference usersRef = database.getReference("users");
             DatabaseReference currentUserRef = usersRef.child(uid);
 
+            if (score == 100) {
+                currentUserRef.child("perfectN5").setValue(true);
+            }
+
             currentUserRef.child("score").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

@@ -167,6 +167,10 @@ public class N4EnglishActivity extends AppCompatActivity {
             DatabaseReference usersRef = database.getReference("users");
             DatabaseReference currentUserRef = usersRef.child(uid);
 
+            if (score == 100) {
+                currentUserRef.child("perfectN4").setValue(true);
+            }
+
             currentUserRef.child("score").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
