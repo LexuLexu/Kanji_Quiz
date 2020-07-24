@@ -53,6 +53,38 @@ public class LevelChoiceActivity extends AppCompatActivity {
             }
         }
 
+        load_bottom_bar();
+    }
+
+    public void go_to_n5English (View v) {
+        startActivity(new Intent (getApplicationContext(), N5EnglishActivity.class));
+    }
+
+    public void go_to_n5Kana (View v) {
+        startActivity(new Intent (getApplicationContext(), N5KanaActivity.class));
+    }
+
+    public void go_to_n4English (View v) {
+        startActivity(new Intent (getApplicationContext(), N4EnglishActivity.class));
+    }
+
+    public void go_to_n4Kana (View v) {
+        startActivity(new Intent (getApplicationContext(), N4KanaActivity.class));
+    }
+
+    public void go_to_endless (View v) {
+        startActivity(new Intent (getApplicationContext(), EndlessActivity.class));
+    }
+
+    public void go_to_profile (View v) {
+        startActivity(new Intent (getApplicationContext(), ProfileActivity.class));
+    }
+
+    public void notAvailable (View v) {
+        Toast.makeText(LevelChoiceActivity.this, "This level will be added in a future version", Toast.LENGTH_SHORT).show();
+    }
+
+    public void load_bottom_bar() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             Menu menu = bottomNavigationView.getMenu();
@@ -89,34 +121,6 @@ public class LevelChoiceActivity extends AppCompatActivity {
             }
 
         });
-    }
-
-    public void go_to_n5English (View v) {
-        startActivity(new Intent (getApplicationContext(), N5EnglishActivity.class));
-    }
-
-    public void go_to_n5Kana (View v) {
-        startActivity(new Intent (getApplicationContext(), N5KanaActivity.class));
-    }
-
-    public void go_to_n4English (View v) {
-        startActivity(new Intent (getApplicationContext(), N4EnglishActivity.class));
-    }
-
-    public void go_to_n4Kana (View v) {
-        startActivity(new Intent (getApplicationContext(), N4KanaActivity.class));
-    }
-
-    public void go_to_endless (View v) {
-        startActivity(new Intent (getApplicationContext(), EndlessActivity.class));
-    }
-
-    public void go_to_profile (View v) {
-        startActivity(new Intent (getApplicationContext(), ProfileActivity.class));
-    }
-
-    public void notAvailable (View v) {
-        Toast.makeText(LevelChoiceActivity.this, "This level will be added in a future version", Toast.LENGTH_SHORT).show();
     }
 
 }

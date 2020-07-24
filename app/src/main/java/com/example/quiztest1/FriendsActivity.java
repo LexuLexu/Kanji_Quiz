@@ -30,6 +30,17 @@ public class FriendsActivity extends AppCompatActivity {
             mainLayout.setBackgroundColor(getColor(R.color.background));
         }
 
+        load_bottom_bar();
+    }
+
+    public void go_to_questions (View view) {
+
+        Intent levelChoiceIntent = new Intent(FriendsActivity.this, LevelChoiceActivity.class);
+        startActivity(levelChoiceIntent);
+
+    }
+
+    public void load_bottom_bar() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             Menu menu = bottomNavigationView.getMenu();
@@ -68,10 +79,4 @@ public class FriendsActivity extends AppCompatActivity {
         });
     }
 
-    public void go_to_questions (View view) {
-
-        Intent levelChoiceIntent = new Intent(FriendsActivity.this, LevelChoiceActivity.class);
-        startActivity(levelChoiceIntent);
-
-    }
 }

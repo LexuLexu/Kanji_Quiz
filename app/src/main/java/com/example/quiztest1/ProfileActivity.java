@@ -136,42 +136,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            Menu menu = bottomNavigationView.getMenu();
-            MenuItem menuItem = menu.getItem(0).setChecked(true);
-
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch(item.getItemId()) {
-
-                    case(R.id.ic_profile):
-                        //Intent intent = new Intent(ProfileActivity.this, ProfileActivity.class);
-                        //startActivity(intent);
-                        break;
-
-                    case(R.id.ic_friends):
-                        Intent intent2 = new Intent(ProfileActivity.this, FriendsActivity.class);
-                        startActivity(intent2);
-                        break;
-
-                    case(R.id.ic_leaderboard):
-                        Intent intent3 = new Intent(ProfileActivity.this, LeaderboardActivity.class);
-                        startActivity(intent3);
-                        break;
-
-                    case(R.id.ic_settings):
-                        Intent intent4 = new Intent(ProfileActivity.this, SettingsActivity.class);
-                        startActivity(intent4);
-                        break;
-
-                }
-                return false;
-
-            }
-
-        });
+        load_bottom_bar();
 
         Handler handler = new Handler();
         int delay = 200; //milliseconds
@@ -322,6 +287,46 @@ public class ProfileActivity extends AppCompatActivity {
         Intent levelChoiceIntent = new Intent(ProfileActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
 
+    }
+
+    public void load_bottom_bar () {
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            Menu menu = bottomNavigationView.getMenu();
+            MenuItem menuItem = menu.getItem(0).setChecked(true);
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId()) {
+
+                    case(R.id.ic_profile):
+                        //Intent intent = new Intent(ProfileActivity.this, ProfileActivity.class);
+                        //startActivity(intent);
+                        break;
+
+                    case(R.id.ic_friends):
+                        Intent intent2 = new Intent(ProfileActivity.this, FriendsActivity.class);
+                        startActivity(intent2);
+                        break;
+
+                    case(R.id.ic_leaderboard):
+                        Intent intent3 = new Intent(ProfileActivity.this, LeaderboardActivity.class);
+                        startActivity(intent3);
+                        break;
+
+                    case(R.id.ic_settings):
+                        Intent intent4 = new Intent(ProfileActivity.this, SettingsActivity.class);
+                        startActivity(intent4);
+                        break;
+
+                }
+                return false;
+
+            }
+
+        });
     }
 
 }

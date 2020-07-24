@@ -62,56 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
             darkModeSwitch.setChecked(false);
         }
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            Menu menu = bottomNavigationView.getMenu();
-            MenuItem menuItem = menu.getItem(4).setChecked(true);
-
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()) {
-
-                    case (R.id.ic_profile):
-                        Intent intent = new Intent(SettingsActivity.this, ProfileActivity.class);
-                        startActivity(intent);
-                        break;
-
-                    case (R.id.ic_friends):
-                        Intent intent2 = new Intent(SettingsActivity.this, FriendsActivity.class);
-                        startActivity(intent2);
-                        break;
-
-                    case (R.id.ic_leaderboard):
-                        Intent intent3 = new Intent(SettingsActivity.this, LeaderboardActivity.class);
-                        startActivity(intent3);
-                        break;
-
-                    case (R.id.ic_settings):
-                        //Intent intent4 = new Intent(SettingsActivity.this, SettingsActivity.class);
-                        //startActivity(intent4);
-                        break;
-
-                }
-                return false;
-
-            }
-
-        });
-
-        //SharedPreferences.Editor settingsEditor = settingsPref.edit();
-
-        //Switch toggleSwitch = findViewById(R.id.nightModeSwitch);
-
-        //toggleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-        //    @Override
-        //    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        //        settingsEditor.putBoolean("nightMode", isChecked);
-        //        settingsEditor.commit();
-        //    }
-
-        //});
+        load_bottom_bar();
 
         TextView logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
@@ -212,6 +163,45 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void go_to_FAQ (View view) {
         startActivity(new Intent (SettingsActivity.this, FAQActivity.class));
+    }
+
+    public void load_bottom_bar() {
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            Menu menu = bottomNavigationView.getMenu();
+            MenuItem menuItem = menu.getItem(4).setChecked(true);
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+
+                    case (R.id.ic_profile):
+                        Intent intent = new Intent(SettingsActivity.this, ProfileActivity.class);
+                        startActivity(intent);
+                        break;
+
+                    case (R.id.ic_friends):
+                        Intent intent2 = new Intent(SettingsActivity.this, FriendsActivity.class);
+                        startActivity(intent2);
+                        break;
+
+                    case (R.id.ic_leaderboard):
+                        Intent intent3 = new Intent(SettingsActivity.this, LeaderboardActivity.class);
+                        startActivity(intent3);
+                        break;
+
+                    case (R.id.ic_settings):
+                        //Intent intent4 = new Intent(SettingsActivity.this, SettingsActivity.class);
+                        //startActivity(intent4);
+                        break;
+
+                }
+                return false;
+
+            }
+
+        });
     }
 
 }

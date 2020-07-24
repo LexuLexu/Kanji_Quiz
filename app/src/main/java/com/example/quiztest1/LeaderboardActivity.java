@@ -191,39 +191,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         });
 
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-        Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(3).setChecked(true);
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-            switch(item.getItemId()) {
-
-                case(R.id.ic_profile):
-                    Intent intent = new Intent(LeaderboardActivity.this, ProfileActivity.class);
-                    startActivity(intent);
-                    break;
-
-                case(R.id.ic_friends):
-                    Intent intent2 = new Intent(LeaderboardActivity.this, FriendsActivity.class);
-                    startActivity(intent2);
-                    break;
-
-                case(R.id.ic_leaderboard):
-                    //Intent intent3 = new Intent(LeaderboardActivity.this, LeaderboardActivity.class);
-                    //startActivity(intent3);
-                    break;
-
-                case(R.id.ic_settings):
-                    Intent intent4 = new Intent(LeaderboardActivity.this, SettingsActivity.class);
-                    startActivity(intent4);
-                    break;
-                }
-            return false;
-            }
-        });
+        load_bottom_bar();
 
         Handler handler = new Handler();
         int delay = 100; //milliseconds
@@ -660,5 +628,41 @@ public class LeaderboardActivity extends AppCompatActivity {
                 view.setText("");
             }
         }
+    }
+
+    public void load_bottom_bar() {
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            Menu menu = bottomNavigationView.getMenu();
+            MenuItem menuItem = menu.getItem(3).setChecked(true);
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId()) {
+
+                    case(R.id.ic_profile):
+                        Intent intent = new Intent(LeaderboardActivity.this, ProfileActivity.class);
+                        startActivity(intent);
+                        break;
+
+                    case(R.id.ic_friends):
+                        Intent intent2 = new Intent(LeaderboardActivity.this, FriendsActivity.class);
+                        startActivity(intent2);
+                        break;
+
+                    case(R.id.ic_leaderboard):
+                        //Intent intent3 = new Intent(LeaderboardActivity.this, LeaderboardActivity.class);
+                        //startActivity(intent3);
+                        break;
+
+                    case(R.id.ic_settings):
+                        Intent intent4 = new Intent(LeaderboardActivity.this, SettingsActivity.class);
+                        startActivity(intent4);
+                        break;
+                }
+                return false;
+            }
+        });
     }
 }
