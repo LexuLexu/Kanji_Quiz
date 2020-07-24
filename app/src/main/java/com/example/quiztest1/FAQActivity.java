@@ -20,14 +20,7 @@ public class FAQActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
 
-        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
-        TextView text1 = findViewById(R.id.FAQText);
-        if (Global.darkMode == true) {
-            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
-            text1.setTextColor(getColor(R.color.colorAccent));
-        } else {
-            mainLayout.setBackgroundColor(getColor(R.color.background));
-        }
+        dark_mode();
 
         load_bottom_bar();
     }
@@ -74,5 +67,16 @@ public class FAQActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void dark_mode() {
+        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        TextView text1 = findViewById(R.id.FAQText);
+        if (Global.darkMode == true) {
+            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+            text1.setTextColor(getColor(R.color.colorAccent));
+        } else {
+            mainLayout.setBackgroundColor(getColor(R.color.background));
+        }
     }
 }

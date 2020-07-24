@@ -65,16 +65,7 @@ public class N5EnglishActivity extends AppCompatActivity {
 
         myToast = Toast.makeText(N5EnglishActivity.this, "", Toast.LENGTH_SHORT);
 
-        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
-        TextView question = findViewById(R.id.questionNumber);
-        if (Global.darkMode == true) {
-            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
-            question.setTextColor(getColor(R.color.colorAccent));
-
-        }
-        else {
-            mainLayout.setBackgroundColor(getColor(R.color.background));
-        }
+        dark_mode();
 
         questionNumber = 0;
         score = 0;
@@ -355,5 +346,18 @@ public class N5EnglishActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void dark_mode() {
+        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        TextView question = findViewById(R.id.questionNumber);
+        if (Global.darkMode == true) {
+            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+            question.setTextColor(getColor(R.color.colorAccent));
+
+        }
+        else {
+            mainLayout.setBackgroundColor(getColor(R.color.background));
+        }
     }
 }

@@ -74,18 +74,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
 
-        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
-        TextView text1 = findViewById(R.id.leaderboardText);
-        if (Global.darkMode == true) {
-            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
-            text1.setTextColor(getColor(R.color.colorAccent));
-            View coverView = findViewById(R.id.leaderboardCover);
-            coverView.setBackgroundColor(getColor(R.color.colorPrimaryDark));
-            coverView.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryDark));
-        }
-        else {
-            mainLayout.setBackgroundColor(getColor(R.color.background));
-        }
+        dark_mode();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userName = user.getDisplayName();
@@ -664,5 +653,20 @@ public class LeaderboardActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void dark_mode() {
+        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        TextView text1 = findViewById(R.id.leaderboardText);
+        if (Global.darkMode == true) {
+            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+            text1.setTextColor(getColor(R.color.colorAccent));
+            View coverView = findViewById(R.id.leaderboardCover);
+            coverView.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+            coverView.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimaryDark));
+        }
+        else {
+            mainLayout.setBackgroundColor(getColor(R.color.background));
+        }
     }
 }

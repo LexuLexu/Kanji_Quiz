@@ -28,16 +28,7 @@ public class LevelChoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_choice);
 
-        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
-        Button endlessButton = findViewById(R.id.endlessButton);
-        if (Global.darkMode == true) {
-            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
-            endlessButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimary));
-
-        }
-        else {
-            mainLayout.setBackgroundColor(getColor(R.color.background));
-        }
+        dark_mode();
 
         CardView setNameCard = findViewById(R.id.setNameCard);
         View noNameCover = findViewById(R.id.noNameCover);
@@ -121,6 +112,19 @@ public class LevelChoiceActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void dark_mode() {
+        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        Button endlessButton = findViewById(R.id.endlessButton);
+        if (Global.darkMode == true) {
+            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+            endlessButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.colorPrimary));
+
+        }
+        else {
+            mainLayout.setBackgroundColor(getColor(R.color.background));
+        }
     }
 
 }

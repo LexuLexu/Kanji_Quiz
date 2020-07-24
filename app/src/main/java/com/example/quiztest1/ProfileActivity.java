@@ -72,15 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         get_scores();
 
-        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
-        if (Global.darkMode == true) {
-            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
-            nameViewText = findViewById(R.id.nameView);
-            nameViewText.setTextColor(getColor(R.color.colorAccent));
-        }
-        else {
-            mainLayout.setBackgroundColor(getColor(R.color.background));
-        }
+        dark_mode();
 
         nameViewText = (EditText) findViewById(R.id.nameView);
 
@@ -327,6 +319,18 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void dark_mode() {
+        ConstraintLayout mainLayout = findViewById(R.id.main_layout);
+        if (Global.darkMode == true) {
+            mainLayout.setBackgroundColor(getColor(R.color.colorPrimaryDark));
+            nameViewText = findViewById(R.id.nameView);
+            nameViewText.setTextColor(getColor(R.color.colorAccent));
+        }
+        else {
+            mainLayout.setBackgroundColor(getColor(R.color.background));
+        }
     }
 
 }
