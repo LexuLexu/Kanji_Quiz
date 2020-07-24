@@ -69,6 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
         dark_mode();
 
         get_userName();
+        get_uid();
 
         load_bottom_bar();
 
@@ -344,6 +345,19 @@ public class ProfileActivity extends AppCompatActivity {
                 handler.postDelayed(this, delay);
             }
         }, delay);
+    }
+
+    public void get_uid(){
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+
+            String uid = user.getUid();
+            TextView uidText = findViewById(R.id.uidText);
+            uidText.setText("User ID:\n" + uid);
+        }
+
+
     }
 
 }
