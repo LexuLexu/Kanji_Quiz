@@ -31,44 +31,16 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mAuth = FirebaseAuth.getInstance();
-
-        if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-            finish();
-        }
+        open_profile_if_user();
 
         registerButton = findViewById(R.id.completeRegistrationButton);
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
         confPasswordInput = findViewById(R.id.confPasswordInput);
 
+        set_register();
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-            if (checkUserDetails()) {
-
-                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
-            }
-        }
-
-    });
-
-}
+    }
 
     public boolean checkUserDetails() {
 
@@ -111,6 +83,40 @@ public class RegisterActivity extends AppCompatActivity {
             confPasswordInput.setTransformationMethod(new PasswordTransformationMethod());
             eye2.setImageResource(R.drawable.visibility_24px);
         }
+    }
+
+    public void open_profile_if_user() {
+        mAuth = FirebaseAuth.getInstance();
+
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            finish();
+        }
+    }
+
+    public void set_register() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                if (checkUserDetails()) {
+
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+                }
+            }
+        });
     }
 
 }

@@ -65,26 +65,7 @@ public class N5KanaActivity extends AppCompatActivity {
 
         dark_mode();
 
-        questionNumber = 0;
-        score = 0;
-        newScore = 0;
-
-        questionView = findViewById(R.id.QuestionView);
-
-        scoreBar = findViewById(R.id.scoreBar);
-        scoreBar2 = findViewById(R.id.scoreBar2);
-
-        answer1 = findViewById(R.id.button1);
-        answer2 = findViewById(R.id.button2);
-        answer3 = findViewById(R.id.button3);
-        answer4 = findViewById(R.id.button4);
-
-        button_array = new Button[4];
-
-        button_array[0] = answer1;
-        button_array[1] = answer2;
-        button_array[2] = answer3;
-        button_array[3] = answer4;
+        initialise_variables();
 
         kanji_array = getResources().getStringArray(R.array.N5_Kanji);
         kana_array = getResources().getStringArray(R.array.N5_Kana);
@@ -359,4 +340,28 @@ public class N5KanaActivity extends AppCompatActivity {
             mainLayout.setBackgroundColor(getColor(R.color.background));
         }
     }
+
+    public void initialise_variables() {
+        questionNumber = 0;
+        score = 0;
+        newScore = 0;
+
+        questionView = findViewById(R.id.QuestionView);
+
+        scoreBar = findViewById(R.id.scoreBar);
+        scoreBar2 = findViewById(R.id.scoreBar2);
+
+        answer1 = findViewById(R.id.button1);
+        answer2 = findViewById(R.id.button2);
+        answer3 = findViewById(R.id.button3);
+        answer4 = findViewById(R.id.button4);
+
+        button_array = new Button[4];
+
+        button_array[0] = answer1;
+        button_array[1] = answer2;
+        button_array[2] = answer3;
+        button_array[3] = answer4;
+    }
+
 }

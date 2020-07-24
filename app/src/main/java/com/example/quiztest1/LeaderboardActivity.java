@@ -76,26 +76,7 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         dark_mode();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        userName = user.getDisplayName();
-        uid = user.getUid();
-
-        sortedUsers = new ArrayList<>();
-        sortedScores = new ArrayList<>();
-
-        sortedEndlessUsers = new ArrayList<>();
-        sortedEndlessScores = new ArrayList<>();
-
-        sbPosList = new ArrayList<>();
-        sbNameList = new ArrayList<>();
-        sbScoreList = new ArrayList<>();
-
-        endPosList = new ArrayList<>();
-        endNameList = new ArrayList<>();
-        endScoreList = new ArrayList<>();
-
-        userList = new HashMap<>();
-        endlessUserList = new HashMap<>();
+        initialise_variables();
 
         create_leaderboards();
 
@@ -115,70 +96,7 @@ public class LeaderboardActivity extends AppCompatActivity {
             }
         });
 
-
-        Chip totalChip = findViewById(R.id.totalChip);
-        Chip endlessChip = findViewById(R.id.endlessChip);
-
-        totalChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                View leaderboardCover = findViewById(R.id.leaderboardCover);
-
-                if (leaderboardCover.getVisibility() == View.INVISIBLE) {
-
-                    CardView totalCard = findViewById(R.id.leaderboardCard);
-                    CardView endlessCard = findViewById(R.id.endlessCard);
-                    totalCard.setVisibility(View.VISIBLE);
-                    endlessCard.setVisibility(View.INVISIBLE);
-
-                    TextView userPos = findViewById(R.id.userPos);
-                    userPos.setText(userPosNum);
-                    TextView userScore = findViewById(R.id.userScore);
-                    userScore.setText(userScoreNum);
-
-                    System.out.println("Switching to total view");
-
-                    if (totalCard.getVisibility() == View.VISIBLE) {
-                        System.out.println("totalCard is visible");
-                    }
-                    if (endlessCard.getVisibility() == View.VISIBLE) {
-                        System.out.println("endlessCard is visible");
-                    }
-                }
-            }
-        });
-
-        endlessChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                View leaderboardCover = findViewById(R.id.leaderboardCover);
-
-                if (leaderboardCover.getVisibility() == View.INVISIBLE) {
-
-                    CardView totalCard = findViewById(R.id.leaderboardCard);
-                    CardView endlessCard = findViewById(R.id.endlessCard);
-                    totalCard.setVisibility(View.INVISIBLE);
-                    endlessCard.setVisibility(View.VISIBLE);
-
-                    TextView userPos = findViewById(R.id.userPos);
-                    userPos.setText(endlessUserPosNum);
-                    TextView userScore = findViewById(R.id.userScore);
-                    userScore.setText(endlessUserScoreNum);
-
-                    System.out.println("Switching to endless view");
-
-                    if (totalCard.getVisibility() == View.VISIBLE) {
-                        System.out.println("totalCard is visible");
-                    }
-                    if (endlessCard.getVisibility() == View.VISIBLE) {
-                        System.out.println("endlessCard is visible");
-                    }
-                }
-            }
-        });
-
+        create_chip_listeners();
 
         load_bottom_bar();
 
@@ -668,5 +586,94 @@ public class LeaderboardActivity extends AppCompatActivity {
         else {
             mainLayout.setBackgroundColor(getColor(R.color.background));
         }
+    }
+
+    public void create_chip_listeners() {
+        Chip totalChip = findViewById(R.id.totalChip);
+        Chip endlessChip = findViewById(R.id.endlessChip);
+
+        totalChip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                View leaderboardCover = findViewById(R.id.leaderboardCover);
+
+                if (leaderboardCover.getVisibility() == View.INVISIBLE) {
+
+                    CardView totalCard = findViewById(R.id.leaderboardCard);
+                    CardView endlessCard = findViewById(R.id.endlessCard);
+                    totalCard.setVisibility(View.VISIBLE);
+                    endlessCard.setVisibility(View.INVISIBLE);
+
+                    TextView userPos = findViewById(R.id.userPos);
+                    userPos.setText(userPosNum);
+                    TextView userScore = findViewById(R.id.userScore);
+                    userScore.setText(userScoreNum);
+
+                    System.out.println("Switching to total view");
+
+                    if (totalCard.getVisibility() == View.VISIBLE) {
+                        System.out.println("totalCard is visible");
+                    }
+                    if (endlessCard.getVisibility() == View.VISIBLE) {
+                        System.out.println("endlessCard is visible");
+                    }
+                }
+            }
+        });
+
+        endlessChip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                View leaderboardCover = findViewById(R.id.leaderboardCover);
+
+                if (leaderboardCover.getVisibility() == View.INVISIBLE) {
+
+                    CardView totalCard = findViewById(R.id.leaderboardCard);
+                    CardView endlessCard = findViewById(R.id.endlessCard);
+                    totalCard.setVisibility(View.INVISIBLE);
+                    endlessCard.setVisibility(View.VISIBLE);
+
+                    TextView userPos = findViewById(R.id.userPos);
+                    userPos.setText(endlessUserPosNum);
+                    TextView userScore = findViewById(R.id.userScore);
+                    userScore.setText(endlessUserScoreNum);
+
+                    System.out.println("Switching to endless view");
+
+                    if (totalCard.getVisibility() == View.VISIBLE) {
+                        System.out.println("totalCard is visible");
+                    }
+                    if (endlessCard.getVisibility() == View.VISIBLE) {
+                        System.out.println("endlessCard is visible");
+                    }
+                }
+            }
+        });
+    }
+
+    public void initialise_variables() {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        userName = user.getDisplayName();
+        uid = user.getUid();
+
+        sortedUsers = new ArrayList<>();
+        sortedScores = new ArrayList<>();
+
+        sortedEndlessUsers = new ArrayList<>();
+        sortedEndlessScores = new ArrayList<>();
+
+        sbPosList = new ArrayList<>();
+        sbNameList = new ArrayList<>();
+        sbScoreList = new ArrayList<>();
+
+        endPosList = new ArrayList<>();
+        endNameList = new ArrayList<>();
+        endScoreList = new ArrayList<>();
+
+        userList = new HashMap<>();
+        endlessUserList = new HashMap<>();
     }
 }

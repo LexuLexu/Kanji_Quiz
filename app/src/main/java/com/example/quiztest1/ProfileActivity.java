@@ -62,87 +62,17 @@ public class ProfileActivity extends AppCompatActivity {
 
         myToast = Toast.makeText(ProfileActivity.this, "", Toast.LENGTH_SHORT);
 
-        userScore = 0;
-        userLevel = 0;
-        currentLevelProgressScore = 0;
-        endlessMax = 0;
-
-        perfectN5 = false;
-        perfectN4 = false;
+        initialise_variables();
 
         get_scores();
 
         dark_mode();
 
-        nameViewText = (EditText) findViewById(R.id.nameView);
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
-            String uid = user.getUid();
-
-            if (!name.equals(null)) {
-                nameViewText.setText(name);
-            }
-        }
-
-        nameViewText.addTextChangedListener(new TextWatcher() {
-
-            public void afterTextChanged(Editable s) {
-            }
-
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(s.toString())
-                        .build();
-
-                user.updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    myToast.setText("Profile updated");
-                                    myToast.show();
-
-                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                    DatabaseReference usersRef = database.getReference("users");
-
-                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                                    String uid = user.getUid();
-                                    String userName = user.getDisplayName();
-
-                                    usersRef.child(uid).child("userName").setValue(userName);
-                                }
-                            }
-                        });
-
-            }
-        });
+        get_userName();
 
         load_bottom_bar();
 
-        Handler handler = new Handler();
-        int delay = 200; //milliseconds
-
-        handler.postDelayed(new Runnable(){
-            public void run(){
-
-                update_levelCard();
-                update_goals();
-
-                System.out.println("ui updated");
-                handler.postDelayed(this, delay);
-            }
-        }, delay);
+        update_ui();
     }
 
     public void get_scores() {
@@ -331,6 +261,89 @@ public class ProfileActivity extends AppCompatActivity {
         else {
             mainLayout.setBackgroundColor(getColor(R.color.background));
         }
+    }
+
+    public void initialise_variables() {
+        userScore = 0;
+        userLevel = 0;
+        currentLevelProgressScore = 0;
+        endlessMax = 0;
+
+        perfectN5 = false;
+        perfectN4 = false;
+    }
+
+    public void get_userName() {
+
+        nameViewText = (EditText) findViewById(R.id.nameView);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
+            String uid = user.getUid();
+
+            if (!name.equals(null)) {
+                nameViewText.setText(name);
+            }
+        }
+
+        nameViewText.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(s.toString())
+                        .build();
+
+                user.updateProfile(profileUpdates)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    myToast.setText("Profile updated");
+                                    myToast.show();
+
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference usersRef = database.getReference("users");
+
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                    String uid = user.getUid();
+                                    String userName = user.getDisplayName();
+
+                                    usersRef.child(uid).child("userName").setValue(userName);
+                                }
+                            }
+                        });
+
+            }
+        });
+    }
+
+    public void update_ui() {
+        Handler handler = new Handler();
+        int delay = 200; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+
+                update_levelCard();
+                update_goals();
+
+                System.out.println("ui updated");
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
     }
 
 }

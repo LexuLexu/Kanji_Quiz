@@ -34,88 +34,13 @@ public class SettingsActivity extends AppCompatActivity {
 
         dark_mode();
 
-        Switch muteSwitch = findViewById(R.id.muteSoundsSwitch);
-        if (Global.soundMuted == true) {
-            muteSwitch.setChecked(true);
-        }
-        else {
-            muteSwitch.setChecked(false);
-        }
-
-        Switch darkModeSwitch = findViewById(R.id.nightModeSwitch);
-        if (Global.darkMode == true) {
-            darkModeSwitch.setChecked(true);
-        }
-        else {
-            darkModeSwitch.setChecked(false);
-        }
+        set_switches();
 
         load_bottom_bar();
 
-        TextView logoutButton = findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
+        set_logoutButton();
 
-            @Override
-            public void onClick(View v) {
-
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                finish();
-
-            }
-        });
-
-        TextView freqText = findViewById(R.id.frequencyAmount);
-        SeekBar freqBar = findViewById(R.id.frequencyBar);
-        freqBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                String[] freqArray = getResources().getStringArray(R.array.Frequency);
-                freqText.setText(freqArray[progress]);
-
-                /** switch (progress) {
-
-                    case 0:
-                        freqText.setText("Daily");
-                        break;
-                    case 1:
-                        freqText.setText("Every 2 days");
-                        break;
-                    case 2:
-                        freqText.setText("Every 3 days");
-                        break;
-                    case 3:
-                        freqText.setText("Every 4 days");
-                        break;
-                    case 4:
-                        freqText.setText("Every 5 days");
-                        break;
-                    case 5:
-                        freqText.setText("Every 6 days");
-                        break;
-                    case 6:
-                        freqText.setText("Weekly");
-                        break;
-                    case 7:
-                        freqText.setText("Monthly");
-                        break;
-
-                } **/
-
-            }
-        });
+        set_freqBar();
     }
 
     public void mute_sounds (View view) {
@@ -206,6 +131,94 @@ public class SettingsActivity extends AppCompatActivity {
         else {
             mainLayout.setBackgroundColor(getColor(R.color.background));
         }
+    }
+
+    public void set_switches() {
+
+        Switch muteSwitch = findViewById(R.id.muteSoundsSwitch);
+        if (Global.soundMuted == true) {
+            muteSwitch.setChecked(true);
+        }
+        else {
+            muteSwitch.setChecked(false);
+        }
+
+        Switch darkModeSwitch = findViewById(R.id.nightModeSwitch);
+        if (Global.darkMode == true) {
+            darkModeSwitch.setChecked(true);
+        }
+        else {
+            darkModeSwitch.setChecked(false);
+        }
+    }
+
+    public void set_freqBar() {
+        TextView freqText = findViewById(R.id.frequencyAmount);
+        SeekBar freqBar = findViewById(R.id.frequencyBar);
+        freqBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                String[] freqArray = getResources().getStringArray(R.array.Frequency);
+                freqText.setText(freqArray[progress]);
+
+                /** switch (progress) {
+
+                 case 0:
+                 freqText.setText("Daily");
+                 break;
+                 case 1:
+                 freqText.setText("Every 2 days");
+                 break;
+                 case 2:
+                 freqText.setText("Every 3 days");
+                 break;
+                 case 3:
+                 freqText.setText("Every 4 days");
+                 break;
+                 case 4:
+                 freqText.setText("Every 5 days");
+                 break;
+                 case 5:
+                 freqText.setText("Every 6 days");
+                 break;
+                 case 6:
+                 freqText.setText("Weekly");
+                 break;
+                 case 7:
+                 freqText.setText("Monthly");
+                 break;
+
+                 } **/
+
+            }
+        });
+    }
+
+    public void set_logoutButton() {
+        TextView logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
+
+            }
+        });
     }
 
 }

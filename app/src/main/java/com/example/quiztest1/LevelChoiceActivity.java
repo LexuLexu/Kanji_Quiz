@@ -30,19 +30,7 @@ public class LevelChoiceActivity extends AppCompatActivity {
 
         dark_mode();
 
-        CardView setNameCard = findViewById(R.id.setNameCard);
-        View noNameCover = findViewById(R.id.noNameCover);
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-
-            String name = user.getDisplayName();
-
-            if (name.equals("")) {
-                setNameCard.setVisibility(View.VISIBLE);
-                noNameCover.setVisibility(View.VISIBLE);
-            }
-        }
+        check_for_name();
 
         load_bottom_bar();
     }
@@ -124,6 +112,22 @@ public class LevelChoiceActivity extends AppCompatActivity {
         }
         else {
             mainLayout.setBackgroundColor(getColor(R.color.background));
+        }
+    }
+
+    public void check_for_name() {
+        CardView setNameCard = findViewById(R.id.setNameCard);
+        View noNameCover = findViewById(R.id.noNameCover);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+
+            String name = user.getDisplayName();
+
+            if (name.equals("")) {
+                setNameCard.setVisibility(View.VISIBLE);
+                noNameCover.setVisibility(View.VISIBLE);
+            }
         }
     }
 
