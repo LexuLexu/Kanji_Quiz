@@ -59,7 +59,7 @@ public class N5KanaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_n5_english);
+        setContentView(R.layout.activity_n5_kana);
 
         myToast = Toast.makeText(N5KanaActivity.this, "", Toast.LENGTH_SHORT);
 
