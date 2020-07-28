@@ -96,6 +96,8 @@ public class LeaderboardActivity extends AppCompatActivity {
             }
         });
 
+        remove_cover();
+
         create_chip_listeners();
 
         load_bottom_bar();
@@ -111,7 +113,6 @@ public class LeaderboardActivity extends AppCompatActivity {
 
                 load_leaderboards();
 
-                System.out.println("leaderboard updated");
                 handler.postDelayed(this, delay);
             }
         }, delay);
@@ -449,9 +450,6 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     public void load_leaderboards (View v) {
 
-        System.out.println(userList);
-        System.out.println(endlessUserList);
-
         List<HashMap.Entry<String, Integer>> list = new LinkedList<>(userList.entrySet());
         sortUsers(list);
         outputToLeaderBoard();
@@ -494,8 +492,6 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     public void load_leaderboards () {
 
-        System.out.println(userList);
-        System.out.println(endlessUserList);
 
         List<HashMap.Entry<String, Integer>> list = new LinkedList<>(userList.entrySet());
         sortUsers(list);
@@ -675,5 +671,17 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         userList = new HashMap<>();
         endlessUserList = new HashMap<>();
+    }
+
+    public void remove_cover() {
+        load_leaderboards();
+
+        View leaderboardCover = findViewById(R.id.leaderboardCover);
+        leaderboardCover.setVisibility(View.INVISIBLE);
+
+        CardView endlessCard = findViewById(R.id.endlessCard);
+        Button coverButton = findViewById(R.id.leaderButton);
+        endlessCard.setVisibility(View.INVISIBLE);
+        coverButton.setVisibility(View.INVISIBLE);
     }
 }
