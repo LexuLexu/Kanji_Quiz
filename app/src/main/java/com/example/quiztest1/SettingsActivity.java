@@ -78,6 +78,10 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(new Intent (SettingsActivity.this, FAQActivity.class));
     }
 
+    public void go_to_help (View view) {
+        startActivity(new Intent (SettingsActivity.this, HelpActivity.class));
+    }
+
     public void load_bottom_bar() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
