@@ -3,18 +3,23 @@ package com.example.quiztest1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HelpActivity extends AppCompatActivity {
 
     private int menuItemCheck;
+
+    private ImageView arrow;
+    private int arrowOrigY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,13 @@ public class HelpActivity extends AppCompatActivity {
 
         cycle_menu_checked();
     }
+
+    protected void onStart() {
+        super.onStart();
+
+        animate_arrow();
+    }
+
 
     public void load_bottom_bar() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
@@ -92,6 +104,54 @@ public class HelpActivity extends AppCompatActivity {
                 }
                 else if (menuItemCheck == 5) {
                     menuItemCheck = 0;
+                }
+
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
+
+    }
+
+    public void animate_arrow() {
+
+        arrow = findViewById(R.id.downArrow);
+        arrowOrigY = 0;
+
+        ObjectAnimator downAnimation = ObjectAnimator.ofFloat(arrow, "translationY", 64f);
+        ObjectAnimator upAnimation = ObjectAnimator.ofFloat(arrow, "translationY", 0);
+
+        downAnimation.setDuration(1000);
+        upAnimation.setDuration(1000);
+
+        Handler handler = new Handler();
+        int delay = 200; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+
+                int[] origPoint = new int[2];
+                arrow.getLocationOnScreen(origPoint);
+                if (arrowOrigY == 0) {
+                    arrowOrigY = origPoint[1];
+                }
+
+                int[] point = new int[2];
+                arrow.getLocationOnScreen(point);
+                int arrowCurrentY = point[1];
+
+                System.out.println("current = " + arrowCurrentY);
+                System.out.println("orig = " + arrowOrigY);
+
+                if (arrowCurrentY == arrowOrigY) {
+                    downAnimation.start();
+                    System.out.println("going down");
+                    arrow.invalidate();
+                }
+
+                else if (arrowCurrentY == (arrowOrigY + 64f)) {
+                  upAnimation.start();
+                  System.out.println("going up");
+                  arrow.invalidate();
                 }
 
                 handler.postDelayed(this, delay);
