@@ -57,10 +57,14 @@ public class SettingsActivity extends AppCompatActivity {
     public void toggle_dark_mode (View view) {
         if (Global.darkMode == true) {
             Global.darkMode = false;
+            dark_mode();
+            recreate();
             System.out.println("Dark mode disabled.");
         }
         else {
             Global.darkMode = true;
+            dark_mode();
+            recreate();
             System.out.println("Dark mode enabled.");
         }
     }
@@ -223,6 +227,10 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void notAvailable (View v) {
+        Toast.makeText(SettingsActivity.this, "This setting will be added in a future version", Toast.LENGTH_SHORT).show();
     }
 
 }
