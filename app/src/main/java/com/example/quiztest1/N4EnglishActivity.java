@@ -108,6 +108,10 @@ public class N4EnglishActivity extends AppCompatActivity {
                 currentUserRef.child("perfectN4").setValue(true);
             }
 
+            if (score >= 50) {
+                currentUserRef.child("scored50N4").setValue(true);
+            }
+
             currentUserRef.child("score").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

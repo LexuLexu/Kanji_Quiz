@@ -53,6 +53,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private boolean perfectN5;
     private boolean perfectN4;
+    private boolean scored50N5;
+    private boolean scored50N4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,6 +173,46 @@ public class ProfileActivity extends AppCompatActivity {
                 myToast.show();
             }
         });
+
+        currentUserRef.child("scored50N5").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null) {
+                    scored50N5 = dataSnapshot.getValue(Boolean.class);
+                }
+                else {
+                    scored50N5 = false;
+                    System.out.println("No scored50N5 found");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                myToast.setText("Error: failed to read database");
+                myToast.show();
+            }
+        });
+
+        currentUserRef.child("scored50N4").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null) {
+                    scored50N4 = dataSnapshot.getValue(Boolean.class);
+                }
+                else {
+                    scored50N4 = false;
+                    System.out.println("No scored50N4 found");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                myToast.setText("Error: failed to read database");
+                myToast.show();
+            }
+        });
     }
 
     public void update_levelCard() {
@@ -186,12 +228,19 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void update_goals() {
 
-        CheckBox n5Box = findViewById(R.id.N5checkBox);
-        CheckBox n4Box = findViewById(R.id.N4checkBox);
-        CheckBox endlessBox = findViewById(R.id.endlessCheckBox);
+        CheckBox halfN5Box = findViewById(R.id.N5checkBox);
+        CheckBox halfN4Box = findViewById(R.id.N4checkBox);
+        CheckBox n5Box = findViewById(R.id.N5checkBoxGoal2);
+        CheckBox n4Box = findViewById(R.id.N4checkBoxGoal2);
+        CheckBox endlessBox15 = findViewById(R.id.endlessCheckBox);
+        CheckBox endlessBox30 = findViewById(R.id.endlessCheckBoxGoal2);
 
         if (endlessMax >= 15) {
-            endlessBox.setChecked(true);
+            endlessBox15.setChecked(true);
+        }
+
+        if (endlessMax >= 30) {
+            endlessBox30.setChecked(true);
         }
 
         if (perfectN5 == true) {
@@ -200,6 +249,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (perfectN4 == true) {
             n4Box.setChecked(true);
+        }
+
+        if (scored50N5 == true) {
+            halfN5Box.setChecked(true);
+        }
+
+        if (scored50N4 == true) {
+            halfN4Box.setChecked(true);
         }
 
     }

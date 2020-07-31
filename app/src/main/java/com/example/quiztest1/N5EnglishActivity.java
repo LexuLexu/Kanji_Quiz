@@ -110,6 +110,10 @@ public class N5EnglishActivity extends AppCompatActivity {
                 currentUserRef.child("perfectN5").setValue(true);
             }
 
+            if (score >= 50) {
+                currentUserRef.child("scored50N5").setValue(true);
+            }
+
             currentUserRef.child("score").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
