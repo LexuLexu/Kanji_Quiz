@@ -163,6 +163,11 @@ public class SettingsActivity extends AppCompatActivity {
     public void set_freqBar() {
         TextView freqText = findViewById(R.id.frequencyAmount);
         SeekBar freqBar = findViewById(R.id.frequencyBar);
+
+        freqBar.setProgress(Global.freqBar);
+        String[] freqArray = getResources().getStringArray(R.array.Frequency);
+        freqText.setText(freqArray[Global.freqBar]);
+
         freqBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -180,35 +185,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                 String[] freqArray = getResources().getStringArray(R.array.Frequency);
                 freqText.setText(freqArray[progress]);
-
-                /** switch (progress) {
-
-                 case 0:
-                 freqText.setText("Daily");
-                 break;
-                 case 1:
-                 freqText.setText("Every 2 days");
-                 break;
-                 case 2:
-                 freqText.setText("Every 3 days");
-                 break;
-                 case 3:
-                 freqText.setText("Every 4 days");
-                 break;
-                 case 4:
-                 freqText.setText("Every 5 days");
-                 break;
-                 case 5:
-                 freqText.setText("Every 6 days");
-                 break;
-                 case 6:
-                 freqText.setText("Weekly");
-                 break;
-                 case 7:
-                 freqText.setText("Monthly");
-                 break;
-
-                 } **/
+                Global.freqBar = progress;
 
             }
         });
