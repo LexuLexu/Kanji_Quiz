@@ -219,9 +219,6 @@ public class ProfileActivity extends AppCompatActivity {
         TextView levelText = findViewById(R.id.levelText);
         ProgressBar levelBar = findViewById(R.id.levelProgressBar);
 
-        System.out.println(userLevel);
-        System.out.println(currentLevelProgressScore);
-
         levelText.setText("Level " + Integer.toString(userLevel));
         levelBar.setProgress(currentLevelProgressScore, true);
     }
@@ -398,7 +395,6 @@ public class ProfileActivity extends AppCompatActivity {
                 update_levelCard();
                 update_goals();
 
-                System.out.println("ui updated");
                 handler.postDelayed(this, delay);
             }
         }, delay);

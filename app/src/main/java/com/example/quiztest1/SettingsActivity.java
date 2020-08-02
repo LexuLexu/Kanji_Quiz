@@ -26,11 +26,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private Toast myToast;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        myToast = Toast.makeText(SettingsActivity.this, "", Toast.LENGTH_SHORT);
 
         dark_mode();
 
@@ -66,6 +69,18 @@ public class SettingsActivity extends AppCompatActivity {
             dark_mode();
             recreate();
             System.out.println("Dark mode enabled.");
+        }
+    }
+
+    public void enable_notifications (View view) {
+        if (Global.notifEnabled == true) {
+            Global.notifEnabled = false;
+            System.out.println("Notifications disabled.");
+        }
+        else {
+            Global.notifEnabled = true;
+            System.out.println("Notifications enabled.");
+            notAvailable();
         }
     }
 
@@ -158,6 +173,14 @@ public class SettingsActivity extends AppCompatActivity {
         else {
             darkModeSwitch.setChecked(false);
         }
+
+        Switch notificationSwitch = findViewById(R.id.remindersSwitch);
+        if (Global.notifEnabled == true) {
+            notificationSwitch.setChecked(true);
+        }
+        else {
+            notificationSwitch.setChecked(false);
+        }
     }
 
     public void set_freqBar() {
@@ -186,6 +209,7 @@ public class SettingsActivity extends AppCompatActivity {
                 String[] freqArray = getResources().getStringArray(R.array.Frequency);
                 freqText.setText(freqArray[progress]);
                 Global.freqBar = progress;
+                notAvailable();
 
             }
         });
@@ -206,8 +230,9 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
-    public void notAvailable (View v) {
-        Toast.makeText(SettingsActivity.this, "This setting will be added in a future version", Toast.LENGTH_SHORT).show();
+    public void notAvailable () {
+        myToast.setText("This setting will be added in a future version");
+        myToast.show();
     }
 
 }

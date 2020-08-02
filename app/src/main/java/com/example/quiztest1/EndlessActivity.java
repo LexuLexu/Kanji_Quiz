@@ -130,8 +130,6 @@ public class EndlessActivity extends AppCompatActivity {
                 System.out.println("Database updated");
             }
 
-            else { System.out.println("score = " + score + "\nuserPrevScore = " + userPrevScore); }
-
             CardView scorePromptCard = findViewById(R.id.scorePromptCard);
             scorePromptCard.setVisibility(View.VISIBLE);
 
