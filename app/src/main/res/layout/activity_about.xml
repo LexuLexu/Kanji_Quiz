@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:padding="12dp"
-                android:text="Data sourced from tanos.co.uk/jlpt"
+                android:text="Kanji data sourced from tanos.co.uk/jlpt"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp" />
         </LinearLayout>
