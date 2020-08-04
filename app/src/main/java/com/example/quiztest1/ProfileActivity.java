@@ -114,17 +114,17 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         currentUserRef.child("endlessMax").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getValue() != null) {
-                    endlessMax = dataSnapshot.getValue(Integer.class);
-                    System.out.println("endlessMax updated");
-            }
-                else {
-                    endlessMax = 0;
-                    System.out.println("No endlessMax found");
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.getValue() != null) {
+                        endlessMax = dataSnapshot.getValue(Integer.class);
+                        System.out.println("endlessMax updated");
+                    }
+                    else {
+                        endlessMax = 0;
+                        System.out.println("No endlessMax found");
+                    }
                 }
-            }
 
             @Override
             public void onCancelled(DatabaseError error) {
