@@ -61,9 +61,11 @@ public class FriendsActivity extends AppCompatActivity {
 
         load_bottom_bar();
 
+
         get_friendsCount();
         get_friendsList();
         get_friends_data();
+
 
         update_friends_ui();
 
