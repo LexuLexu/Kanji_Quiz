@@ -410,7 +410,6 @@ public class ProfileActivity extends AppCompatActivity {
             uidText.setText("User ID:\n" + uid);
         }
 
-
     }
 
 }
