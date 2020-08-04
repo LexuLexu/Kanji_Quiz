@@ -2,6 +2,7 @@ package com.example.quiztest1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,7 +55,7 @@ public class FriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
 
-        myToast = Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_SHORT);
+        initialise_variables();
 
         dark_mode();
 
@@ -64,6 +65,8 @@ public class FriendsActivity extends AppCompatActivity {
         get_friendsList();
         get_friends_data();
 
+        update_friends_ui();
+
     }
 
     public void go_to_questions (View view) {
@@ -71,8 +74,8 @@ public class FriendsActivity extends AppCompatActivity {
         Intent levelChoiceIntent = new Intent(FriendsActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
 
-    }
 
+    }
     public void load_bottom_bar() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -169,10 +172,13 @@ public class FriendsActivity extends AppCompatActivity {
 
     public void addFriendButton (View view) {
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userUid = user.getUid();
+
         EditText uidInput = findViewById(R.id.SearchInput);
         String friendUid = uidInput.getText().toString();
 
-        if (!friendUid.equals("")) {
+        if (!friendUid.equals("") && !friendUid.equals(userUid) && friendUid.length() == 28) {
             add_to_friends_list(friendUid);
         }
         else {
@@ -241,6 +247,51 @@ public class FriendsActivity extends AppCompatActivity {
                 myToast.show();
             }
         });
+
+    }
+
+    public void update_friends_ui () {
+
+        Handler handler = new Handler();
+        int delay = 1000; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+
+                TextView level1 = findViewById(R.id.friend1Level);
+                TextView name1 = findViewById(R.id.friend1Name);
+                TextView score1 = findViewById(R.id.friend1Score);
+                TextView endless1 = findViewById(R.id.friend1EndlessMax);
+
+                name1.setText("" + friend1Name);
+                level1.setText("" + friend1Level);
+                score1.setText("" + friend1Score);
+                endless1.setText("" + friend1EndlessMax);
+
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
+    }
+
+    public void initialise_variables() {
+
+        myToast = Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_SHORT);
+
+        friend1Name = "";
+        friend1Score = 0;
+        friend1EndlessMax = 0;
+        friend1Level = 0;
+
+        friend2Name = "";
+        friend2Score = 0;
+        friend2EndlessMax = 0;
+        friend2Level = 0;
+
+        friend3Name = "";
+        friend3Score = 0;
+        friend3EndlessMax = 0;
+        friend3Level = 0;
+
 
     }
 

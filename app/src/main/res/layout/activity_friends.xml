@@ -9,6 +9,83 @@
     tools:context=".FriendsActivity">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/friendCard1"
+        android:layout_width="349dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="48dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friendsText">
+
+        <LinearLayout
+            android:id="@+id/topLayer1"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/friend1Level"
+                android:layout_width="49dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/friend1Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="friend1Name"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottomLayer1"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/topLayer1">
+
+            <TextView
+                android:id="@+id/friend1Score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/friend1EndlessMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold|italic" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/SearchCard"
         android:layout_width="270dp"
         android:layout_height="48dp"
@@ -43,13 +120,13 @@
             android:layout_gravity="center_vertical|end">
 
             <ImageView
-                android:id="@+id/passwordHideEye"
+                android:id="@+id/addFriendButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:onClick="addFriendButton"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
                 android:tint="@color/colorAccent"
-                android:onClick="addFriendButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
