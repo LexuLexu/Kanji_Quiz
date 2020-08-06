@@ -8,11 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -61,14 +63,32 @@ public class FriendsActivity extends AppCompatActivity {
 
         load_bottom_bar();
 
+        set_onClickListeners();
 
         get_friendsCount();
         get_friendsList();
         get_friends_data();
 
-
         update_friends_ui();
 
+
+    }
+
+    private void set_onClickListeners() {
+        ImageView removeFriend1 = findViewById(R.id.removeFriend1);
+        removeFriend1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                remove_friend_info(v);
+            }
+        });
+        removeFriend1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                remove_friend(v);
+                return false;
+            }
+        });
     }
 
     public void go_to_questions (View view) {
@@ -270,6 +290,18 @@ public class FriendsActivity extends AppCompatActivity {
                 score1.setText("" + friend1Score);
                 endless1.setText("" + friend1EndlessMax);
 
+                CardView friend1Card = findViewById(R.id.friendCard1);
+                TextView noFriends = findViewById(R.id.noFriendsText);
+
+                if (friendsCount < 1) {
+                    noFriends.setVisibility(View.VISIBLE);
+                    friend1Card.setVisibility(View.INVISIBLE);
+                }
+                else {
+                    noFriends.setVisibility(View.INVISIBLE);
+                    friend1Card.setVisibility(View.VISIBLE);
+                }
+
                 handler.postDelayed(this, delay);
             }
         }, delay);
@@ -294,6 +326,41 @@ public class FriendsActivity extends AppCompatActivity {
         friend3EndlessMax = 0;
         friend3Level = 0;
 
+    }
+
+    public void remove_friend_info (View view) {
+        myToast.setText("Hold down the button to remove this friend from your friends list");
+        myToast.show();
+    }
+
+    public void remove_friend(View view) {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userUid = user.getUid();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference userRef = database.getReference("users").child(userUid).child("friends");
+
+        ImageView button1 = findViewById(R.id.removeFriend1);
+        CardView friend1Card = findViewById(R.id.friendCard1);
+        TextView noFriendsText = findViewById(R.id.noFriendsText);
+
+        if (view == button1 && friendsList.size() > 0) {
+            userRef.child(friendsList.get(0)).removeValue();
+            friendsList.remove(0);
+            friendsCount -= 1;
+
+            friend1Card.setVisibility(View.INVISIBLE);
+            noFriendsText.setVisibility(View.VISIBLE);
+
+            myToast.setText("Friend removed");
+            myToast.show();
+        }
+
+        else {
+            myToast.setText("An error has occurred. Please try again later.");
+            myToast.show();
+        }
 
     }
 

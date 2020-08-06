@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#232F34</color>
     <color name="colorAccent">#F9AA33</color>
     <color name="correct">#08F26E</color>
-    <color name="incorrect">#FF0000</color>
+    <color name="incorrect">#AF0000</color>
     <color name="background">#E6E6E6</color>
     <color name="buttonPrimary">#E0E0E0</color>
 </resources>
