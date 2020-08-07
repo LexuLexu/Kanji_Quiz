@@ -1,0 +1,434 @@
+@startuml
+
+title __QUIZTEST1's Class Diagram__\n
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.AboutActivity {
+        + go_to_questions()
+        + load_bottom_bar()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.EndlessActivity {
+        + myToast : Toast
+        + newScore : int
+        - N4_kana_array : String[]
+        - N4_kanji_array : String[]
+        - N4_words_array : String[]
+        - N5_kana_array : String[]
+        - N5_kanji_array : String[]
+        - N5_words_array : String[]
+        - answer1 : Button
+        - answer2 : Button
+        - answer3 : Button
+        - answer4 : Button
+        - answer_array : String[]
+        - button_array : Button[]
+        - correctButton : Button
+        - kanji_array : String[]
+        - lives : int
+        - questionNumber : int
+        - questionView : TextView
+        - question_number : String
+        - question_word : String
+        - score : int
+        - scoreBar : ProgressBar
+        - scoreBar2 : ProgressBar
+        - userPrevScore : int
+        + answer_question()
+        + correctAnswer()
+        + dark_mode()
+        + endQuizButton()
+        + get_random_button()
+        + getnewQuestion()
+        + go_to_questions()
+        + incorrectAnswer()
+        + load_bottom_bar()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.FAQActivity {
+        + dark_mode()
+        + go_to_questions()
+        + load_bottom_bar()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.FriendsActivity {
+        - friend1EndlessMax : int
+        - friend1Level : int
+        - friend1Name : String
+        - friend1Score : int
+        - friend2EndlessMax : int
+        - friend2Level : int
+        - friend2Name : String
+        - friend2Score : int
+        - friend3EndlessMax : int
+        - friend3Level : int
+        - friend3Name : String
+        - friend3Score : int
+        - friendsCount : int
+        - friendsList : ArrayList<String>
+        - myToast : Toast
+        + addFriendButton()
+        + add_to_friends_list()
+        + dark_mode()
+        + get_friendsCount()
+        + get_friendsList()
+        + get_friends_data()
+        + go_to_questions()
+        + initialise_variables()
+        + load_bottom_bar()
+        + remove_friend()
+        + remove_friend_info()
+        + update_friends_ui()
+        # onCreate()
+        - set_onClickListeners()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.Global {
+        {static} + darkMode : boolean
+        {static} + freqBar : int
+        {static} + notifEnabled : boolean
+        {static} + soundMuted : boolean
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.HelpActivity {
+        - arrow : ImageView
+        - arrowOrigY : int
+        - menuItemCheck : int
+        + animate_arrow()
+        + cycle_menu_checked()
+        + go_to_questions()
+        + load_bottom_bar()
+        # onCreate()
+        # onStart()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.LeaderboardActivity {
+        - endNameList : ArrayList<TextView>
+        - endPosList : ArrayList<TextView>
+        - endScoreList : ArrayList<TextView>
+        - endlessUserList : HashMap<String, Integer>
+        - endlessUserPosNum : String
+        - endlessUserScoreNum : String
+        - list : List<Entry<String, Integer>>
+        - sbNameList : ArrayList<TextView>
+        - sbPosList : ArrayList<TextView>
+        - sbScoreList : ArrayList<TextView>
+        - sortedEndlessScores : ArrayList<Integer>
+        - sortedEndlessUsers : ArrayList<String>
+        - sortedScores : ArrayList<Integer>
+        - sortedUsers : ArrayList<String>
+        - uid : String
+        - userList : HashMap<String, Integer>
+        - userName : String
+        - userPosNum : String
+        - userScore : String
+        - userScoreNum : String
+        + clearEndlessBoard()
+        + clearLeaderBoard()
+        + create_chip_listeners()
+        + create_leaderboards()
+        + dark_mode()
+        + gatherEndlessTextViews()
+        + gatherTextViews()
+        + getUsers()
+        + go_to_questions()
+        + initialise_variables()
+        + load_bottom_bar()
+        + load_leaderboards()
+        + load_leaderboards()
+        + outputToEndlessBoard()
+        + outputToLeaderBoard()
+        + remove_cover()
+        + sortEndlessUsers()
+        + sortUsers()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.LevelChoiceActivity {
+        + check_for_name()
+        + dark_mode()
+        + go_to_endless()
+        + go_to_n4English()
+        + go_to_n4Kana()
+        + go_to_n5English()
+        + go_to_n5Kana()
+        + go_to_profile()
+        + load_bottom_bar()
+        + notAvailable()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.LoginActivity {
+        - emailInput : EditText
+        - loginButton : Button
+        - mAuth : FirebaseAuth
+        - passwordInput : EditText
+        + registerButton()
+        + resetPassword()
+        + toggleHidePassword()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.N4EnglishActivity {
+        + myToast : Toast
+        + newScore : int
+        - answer1 : Button
+        - answer2 : Button
+        - answer3 : Button
+        - answer4 : Button
+        - button_array : Button[]
+        - correctButton : Button
+        - kanji_array : String[]
+        - questionNumber : int
+        - questionView : TextView
+        - question_number : String
+        - question_word : String
+        - score : int
+        - scoreBar : ProgressBar
+        - scoreBar2 : ProgressBar
+        - words_array : String[]
+        + answer_question()
+        + correctAnswer()
+        + dark_mode()
+        + endQuizButton()
+        + get_random_button()
+        + getnewQuestion()
+        + go_to_questions()
+        + incorrectAnswer()
+        + initialise_variables()
+        + load_bottom_bar()
+        + updateScoreBar()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.N4KanaActivity {
+        + myToast : Toast
+        + newScore : int
+        - answer1 : Button
+        - answer2 : Button
+        - answer3 : Button
+        - answer4 : Button
+        - button_array : Button[]
+        - correctButton : Button
+        - kana_array : String[]
+        - kanji_array : String[]
+        - questionNumber : int
+        - questionView : TextView
+        - question_number : String
+        - question_word : String
+        - score : int
+        - scoreBar : ProgressBar
+        - scoreBar2 : ProgressBar
+        + answer_question()
+        + correctAnswer()
+        + dark_mode()
+        + endQuizButton()
+        + get_random_button()
+        + getnewQuestion()
+        + go_to_questions()
+        + incorrectAnswer()
+        + initialise_variables()
+        + load_bottom_bar()
+        + updateScoreBar()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.N5EnglishActivity {
+        + myToast : Toast
+        + newScore : int
+        - answer1 : Button
+        - answer2 : Button
+        - answer3 : Button
+        - answer4 : Button
+        - button_array : Button[]
+        - correctButton : Button
+        - kanji_array : String[]
+        - questionNumber : int
+        - questionView : TextView
+        - question_number : String
+        - question_word : String
+        - score : int
+        - scoreBar : ProgressBar
+        - scoreBar2 : ProgressBar
+        - words_array : String[]
+        + answer_question()
+        + correctAnswer()
+        + dark_mode()
+        + endQuizButton()
+        + get_random_button()
+        + getnewQuestion()
+        + go_to_questions()
+        + incorrectAnswer()
+        + initialise_variables()
+        + load_bottom_bar()
+        + updateScoreBar()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.N5KanaActivity {
+        + myToast : Toast
+        + newScore : int
+        - answer1 : Button
+        - answer2 : Button
+        - answer3 : Button
+        - answer4 : Button
+        - button_array : Button[]
+        - correctButton : Button
+        - kana_array : String[]
+        - kanji_array : String[]
+        - questionNumber : int
+        - questionView : TextView
+        - question_number : String
+        - question_word : String
+        - score : int
+        - scoreBar : ProgressBar
+        - scoreBar2 : ProgressBar
+        + answer_question()
+        + correctAnswer()
+        + dark_mode()
+        + endQuizButton()
+        + get_random_button()
+        + getnewQuestion()
+        + go_to_questions()
+        + incorrectAnswer()
+        + initialise_variables()
+        + load_bottom_bar()
+        + updateScoreBar()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.ProfileActivity {
+        + myToast : Toast
+        # nameViewText : EditText
+        - currentLevelProgressScore : int
+        - endlessMax : int
+        - perfectN4 : boolean
+        - perfectN5 : boolean
+        - scored50N4 : boolean
+        - scored50N5 : boolean
+        - userLevel : int
+        - userScore : int
+        + dark_mode()
+        + get_scores()
+        + get_uid()
+        + get_userName()
+        + go_to_questions()
+        + initialise_variables()
+        + load_bottom_bar()
+        + update_goals()
+        + update_levelCard()
+        + update_ui()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.RegisterActivity {
+        - confPassword : String
+        - confPasswordInput : EditText
+        - email : String
+        - emailInput : EditText
+        - mAuth : FirebaseAuth
+        - password : String
+        - passwordInput : EditText
+        - registerButton : Button
+        + checkUserDetails()
+        + go_to_login()
+        + open_profile_if_user()
+        + set_register()
+        + toggleHideConfPassword()
+        + toggleHidePassword()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.quiztest1 {
+    class com.example.quiztest1.SettingsActivity {
+        - myToast : Toast
+        + dark_mode()
+        + enable_notifications()
+        + go_to_FAQ()
+        + go_to_about()
+        + go_to_help()
+        + go_to_questions()
+        + load_bottom_bar()
+        + mute_sounds()
+        + notAvailable()
+        + set_freqBar()
+        + set_logoutButton()
+        + set_switches()
+        + toggle_dark_mode()
+        # onCreate()
+    }
+  }
+  
+
+  com.example.quiztest1.AboutActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.EndlessActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.FAQActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.FriendsActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.HelpActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.LeaderboardActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.LevelChoiceActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.LoginActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.N4EnglishActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.N4KanaActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.N5EnglishActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.N5KanaActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.ProfileActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.RegisterActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.quiztest1.SettingsActivity -up-|> androidx.appcompat.app.AppCompatActivity
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

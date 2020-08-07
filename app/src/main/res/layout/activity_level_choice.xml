@@ -174,8 +174,8 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
-                android:text="N1"
-                android:textColor="@color/colorPrimary"
+                android:text="N1 (hardest!)"
+                android:textColor="@color/incorrect"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:translationX="12dp" />
@@ -478,8 +478,8 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
-                android:text="N5"
-                android:textColor="@color/colorPrimary"
+                android:text="N5 (easiest!)"
+                android:textColor="@color/correct"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:translationX="12dp" />
