@@ -274,7 +274,12 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     public void outputToLeaderBoard() {
 
-        for (int i = 0; i < sortedUsers.size(); i++) {
+        int maxNum = 10;
+        if (sortedUsers.size() < 10) {
+            maxNum = sortedUsers.size();
+        }
+
+        for (int i = 0; i < maxNum; i++) {
 
             TextView sbPos = sbPosList.get(i);
             TextView sbName = sbNameList.get(i);
@@ -291,7 +296,12 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     public void outputToEndlessBoard() {
 
-        for (int i = 0; i < sortedEndlessUsers.size(); i++) {
+        int maxNum = 10;
+        if (sortedEndlessUsers.size() < 10) {
+            maxNum = sortedEndlessUsers.size();
+        }
+
+        for (int i = 0; i < maxNum; i++) {
 
             TextView endPos = endPosList.get(i);
             TextView endName = endNameList.get(i);
