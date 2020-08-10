@@ -8,6 +8,7 @@
         <item name="background">@android:color/white</item>
 
         <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
 
     </style>
 
