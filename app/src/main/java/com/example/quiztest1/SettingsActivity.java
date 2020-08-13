@@ -24,6 +24,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * The type Settings activity.
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     private Toast myToast;
@@ -46,6 +49,11 @@ public class SettingsActivity extends AppCompatActivity {
         set_freqBar();
     }
 
+    /**
+     * Mute sounds.
+     *
+     * @param view the view
+     */
     public void mute_sounds (View view) {
         if (Global.soundMuted == true) {
             Global.soundMuted = false;
@@ -57,6 +65,11 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Toggle dark mode.
+     *
+     * @param view the view
+     */
     public void toggle_dark_mode (View view) {
         if (Global.darkMode == true) {
             Global.darkMode = false;
@@ -72,6 +85,11 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Enable notifications.
+     *
+     * @param view the view
+     */
     public void enable_notifications (View view) {
         if (Global.notifEnabled == true) {
             Global.notifEnabled = false;
@@ -84,23 +102,46 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Go to questions.
+     *
+     * @param view the view
+     */
     public void go_to_questions (View view) {
         Intent levelChoiceIntent = new Intent(SettingsActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
     }
 
+    /**
+     * Go to about.
+     *
+     * @param view the view
+     */
     public void go_to_about (View view) {
         startActivity(new Intent (SettingsActivity.this, AboutActivity.class));
     }
 
+    /**
+     * Go to faq.
+     *
+     * @param view the view
+     */
     public void go_to_FAQ (View view) {
         startActivity(new Intent (SettingsActivity.this, FAQActivity.class));
     }
 
+    /**
+     * Go to help.
+     *
+     * @param view the view
+     */
     public void go_to_help (View view) {
         startActivity(new Intent (SettingsActivity.this, HelpActivity.class));
     }
 
+    /**
+     * Load bottom bar.
+     */
     public void load_bottom_bar() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -140,6 +181,9 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Dark mode.
+     */
     public void dark_mode() {
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
         TextView text1 = findViewById(R.id.settingsText);
@@ -156,6 +200,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sets switches.
+     */
     public void set_switches() {
 
         Switch muteSwitch = findViewById(R.id.muteSoundsSwitch);
@@ -183,6 +230,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sets freq bar.
+     */
     public void set_freqBar() {
         TextView freqText = findViewById(R.id.frequencyAmount);
         SeekBar freqBar = findViewById(R.id.frequencyBar);
@@ -215,6 +265,9 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sets logout button.
+     */
     public void set_logoutButton() {
         TextView logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
@@ -230,6 +283,9 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Not available.
+     */
     public void notAvailable () {
         myToast.setText("This setting will be added in a future version");
         myToast.show();

@@ -14,6 +14,10 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
+/**
+ * The type About activity.
+ */
 public class AboutActivity extends AppCompatActivity {
 
     @Override
@@ -26,11 +30,19 @@ public class AboutActivity extends AppCompatActivity {
         load_bottom_bar();
     }
 
+    /**
+     * Go to questions.
+     *
+     * @param view the view
+     */
     public void go_to_questions (View view) {
         Intent levelChoiceIntent = new Intent(AboutActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
     }
 
+    /**
+     * Load bottom bar.
+     */
     public void load_bottom_bar() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -70,6 +82,9 @@ public class AboutActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Dark mode.
+     */
     public void dark_mode() {
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
         TextView text1 = findViewById(R.id.aboutText);

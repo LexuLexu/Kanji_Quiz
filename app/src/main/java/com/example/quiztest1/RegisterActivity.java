@@ -19,6 +19,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * The type Register activity.
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText emailInput, passwordInput, confPasswordInput;
@@ -42,6 +45,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Check user details boolean.
+     *
+     * @return the boolean
+     */
     public boolean checkUserDetails() {
 
         email = emailInput.getText().toString().trim();
@@ -57,6 +65,11 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Toggle hide password.
+     *
+     * @param view the view
+     */
     public void toggleHidePassword (View view) {
 
         ImageView eye = findViewById(R.id.passwordHideEye);
@@ -71,6 +84,11 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Toggle hide conf password.
+     *
+     * @param view the view
+     */
     public void toggleHideConfPassword (View view) {
 
         ImageView eye2 = findViewById(R.id.passwordHideEye2);
@@ -85,6 +103,9 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Open profile if user.
+     */
     public void open_profile_if_user() {
         mAuth = FirebaseAuth.getInstance();
 
@@ -94,6 +115,9 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sets register.
+     */
     public void set_register() {
         registerButton.setOnClickListener(new View.OnClickListener() {
 
@@ -119,6 +143,11 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Go to login.
+     *
+     * @param v the v
+     */
     public void go_to_login (View v) {
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }

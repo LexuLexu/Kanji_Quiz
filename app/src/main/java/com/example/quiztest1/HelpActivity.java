@@ -14,6 +14,9 @@ import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * The type Help activity.
+ */
 public class HelpActivity extends AppCompatActivity {
 
     private int menuItemCheck;
@@ -38,6 +41,9 @@ public class HelpActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Load bottom bar.
+     */
     public void load_bottom_bar() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -77,11 +83,19 @@ public class HelpActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Go to questions.
+     *
+     * @param view the view
+     */
     public void go_to_questions (View view) {
         Intent levelChoiceIntent = new Intent(HelpActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
     }
 
+    /**
+     * Cycle menu checked.
+     */
     public void cycle_menu_checked() {
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
@@ -112,6 +126,9 @@ public class HelpActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Animate arrow.
+     */
     public void animate_arrow() {
 
         arrow = findViewById(R.id.downArrow);

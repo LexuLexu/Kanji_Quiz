@@ -20,6 +20,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * The type Login activity.
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -76,10 +79,20 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Register button.
+     *
+     * @param view the view
+     */
     public void registerButton (View view) {
         startActivity (new Intent (LoginActivity.this, RegisterActivity.class));
     }
 
+    /**
+     * Toggle hide password.
+     *
+     * @param view the view
+     */
     public void toggleHidePassword (View view) {
 
         ImageView eye = findViewById(R.id.passwordHideEye);
@@ -94,6 +107,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Reset password.
+     *
+     * @param view the view
+     */
     public void resetPassword (View view) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         EditText emailInput = findViewById(R.id.emailInput);

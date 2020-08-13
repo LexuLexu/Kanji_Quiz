@@ -39,6 +39,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * The type Leaderboard activity.
+ */
 public class LeaderboardActivity extends AppCompatActivity {
 
     private String userName;
@@ -118,11 +121,19 @@ public class LeaderboardActivity extends AppCompatActivity {
         }, delay);
     }
 
+    /**
+     * Go to questions.
+     *
+     * @param view the view
+     */
     public void go_to_questions (View view) {
         Intent levelChoiceIntent = new Intent(LeaderboardActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
     }
 
+    /**
+     * Create leaderboards.
+     */
     public void create_leaderboards() {
 
         gatherTextViews();
@@ -134,6 +145,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         userNameDisplay.setText(userName);
     }
 
+    /**
+     * Gets users.
+     */
     public void getUsers () {
 
         userList.put("Jon Sandman", 0);
@@ -177,6 +191,11 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Sort users.
+     *
+     * @param list the list
+     */
     public void sortUsers (List<HashMap.Entry<String, Integer>> list) {
 
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
@@ -210,6 +229,11 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sort endless users.
+     *
+     * @param list the list
+     */
     public void sortEndlessUsers (List<HashMap.Entry<String, Integer>> list) {
 
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
@@ -244,6 +268,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Clear leader board.
+     */
     public void clearLeaderBoard() {
 
         for (int i = 0; i < 10; i++) {
@@ -258,6 +285,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Clear endless board.
+     */
     public void clearEndlessBoard() {
 
         for (int i = 0; i < 10; i++) {
@@ -272,6 +302,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Output to leader board.
+     */
     public void outputToLeaderBoard() {
 
         int maxNum = 10;
@@ -294,6 +327,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Output to endless board.
+     */
     public void outputToEndlessBoard() {
 
         int maxNum = 10;
@@ -316,6 +352,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Gather text views.
+     */
     public void gatherTextViews(){
 
         TextView sbPos1 = findViewById(R.id.sbPos1);
@@ -386,6 +425,9 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Gather endless text views.
+     */
     public void gatherEndlessTextViews(){
 
         TextView endPos1 = findViewById(R.id.endPos1);
@@ -457,7 +499,11 @@ public class LeaderboardActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Load leaderboards.
+     *
+     * @param v the v
+     */
     public void load_leaderboards (View v) {
 
         List<HashMap.Entry<String, Integer>> list = new LinkedList<>(userList.entrySet());
@@ -500,6 +546,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Load leaderboards.
+     */
     public void load_leaderboards () {
 
 
@@ -543,6 +592,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Load bottom bar.
+     */
     public void load_bottom_bar() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -579,6 +631,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Dark mode.
+     */
     public void dark_mode() {
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
         TextView text1 = findViewById(R.id.leaderboardText);
@@ -594,6 +649,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Create chip listeners.
+     */
     public void create_chip_listeners() {
         Chip totalChip = findViewById(R.id.totalChip);
         Chip endlessChip = findViewById(R.id.endlessChip);
@@ -659,6 +717,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initialise variables.
+     */
     public void initialise_variables() {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -683,6 +744,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         endlessUserList = new HashMap<>();
     }
 
+    /**
+     * Remove cover.
+     */
     public void remove_cover() {
         load_leaderboards();
 

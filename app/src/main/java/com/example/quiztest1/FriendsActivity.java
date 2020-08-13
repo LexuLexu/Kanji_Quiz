@@ -29,6 +29,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * The type Friends activity.
+ */
 public class FriendsActivity extends AppCompatActivity {
 
     private Toast myToast;
@@ -91,6 +94,11 @@ public class FriendsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Go to questions.
+     *
+     * @param view the view
+     */
     public void go_to_questions (View view) {
 
         Intent levelChoiceIntent = new Intent(FriendsActivity.this, LevelChoiceActivity.class);
@@ -98,6 +106,10 @@ public class FriendsActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     * Load bottom bar.
+     */
     public void load_bottom_bar() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -137,6 +149,9 @@ public class FriendsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Dark mode.
+     */
     public void dark_mode() {
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
         TextView text1 = findViewById(R.id.friendsText);
@@ -149,6 +164,9 @@ public class FriendsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Gets friends data.
+     */
     public void get_friends_data() {
 
         for (String friendId : friendsList) {
@@ -192,6 +210,11 @@ public class FriendsActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Add friend button.
+     *
+     * @param view the view
+     */
     public void addFriendButton (View view) {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -209,6 +232,11 @@ public class FriendsActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Add to friends list.
+     *
+     * @param friendUid the friend uid
+     */
     public void add_to_friends_list (String friendUid) {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -226,6 +254,9 @@ public class FriendsActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Gets friends count.
+     */
     public void get_friendsCount () {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -245,6 +276,9 @@ public class FriendsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Gets friends list.
+     */
     public void get_friendsList () {
 
         friendsList = new ArrayList<>();
@@ -272,6 +306,9 @@ public class FriendsActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Update friends ui.
+     */
     public void update_friends_ui () {
 
         Handler handler = new Handler();
@@ -307,6 +344,9 @@ public class FriendsActivity extends AppCompatActivity {
         }, delay);
     }
 
+    /**
+     * Initialise variables.
+     */
     public void initialise_variables() {
 
         myToast = Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_SHORT);
@@ -328,11 +368,21 @@ public class FriendsActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Remove friend info.
+     *
+     * @param view the view
+     */
     public void remove_friend_info (View view) {
         myToast.setText("Hold down the button to remove this friend from your friends list");
         myToast.show();
     }
 
+    /**
+     * Remove friend.
+     *
+     * @param view the view
+     */
     public void remove_friend(View view) {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

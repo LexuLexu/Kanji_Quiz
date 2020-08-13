@@ -40,6 +40,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * The type Profile activity.
+ */
 public class ProfileActivity extends AppCompatActivity {
 
     public Toast myToast;
@@ -78,6 +81,9 @@ public class ProfileActivity extends AppCompatActivity {
         update_ui();
     }
 
+    /**
+     * Gets scores.
+     */
     public void get_scores() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
@@ -215,6 +221,9 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Update level card.
+     */
     public void update_levelCard() {
         TextView levelText = findViewById(R.id.levelText);
         ProgressBar levelBar = findViewById(R.id.levelProgressBar);
@@ -223,6 +232,9 @@ public class ProfileActivity extends AppCompatActivity {
         levelBar.setProgress(currentLevelProgressScore, true);
     }
 
+    /**
+     * Update goals.
+     */
     public void update_goals() {
 
         CheckBox halfN5Box = findViewById(R.id.N5checkBox);
@@ -259,6 +271,11 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Go to questions.
+     *
+     * @param v the v
+     */
     public void go_to_questions (View v) {
 
         Intent levelChoiceIntent = new Intent(ProfileActivity.this, LevelChoiceActivity.class);
@@ -266,6 +283,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Load bottom bar.
+     */
     public void load_bottom_bar () {
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
@@ -306,6 +326,9 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Dark mode.
+     */
     public void dark_mode() {
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
         if (Global.darkMode == true) {
@@ -318,6 +341,9 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Initialise variables.
+     */
     public void initialise_variables() {
         userScore = 0;
         userLevel = 0;
@@ -328,6 +354,9 @@ public class ProfileActivity extends AppCompatActivity {
         perfectN4 = false;
     }
 
+    /**
+     * Gets user name.
+     */
     public void get_userName() {
 
         nameViewText = (EditText) findViewById(R.id.nameView);
@@ -385,6 +414,9 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Update ui.
+     */
     public void update_ui() {
         Handler handler = new Handler();
         int delay = 200; //milliseconds
@@ -400,6 +432,9 @@ public class ProfileActivity extends AppCompatActivity {
         }, delay);
     }
 
+    /**
+     * Get uid.
+     */
     public void get_uid(){
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

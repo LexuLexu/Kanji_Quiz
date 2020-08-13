@@ -28,6 +28,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
 
+/**
+ * The type N 4 english activity.
+ */
 public class N4EnglishActivity extends AppCompatActivity {
 
     public Toast myToast;
@@ -43,6 +46,7 @@ public class N4EnglishActivity extends AppCompatActivity {
     private TextView questionView;
 
     private int score;
+
     public int newScore;
 
     private Button answer1;
@@ -75,6 +79,11 @@ public class N4EnglishActivity extends AppCompatActivity {
         load_bottom_bar();
     }
 
+    /**
+     * Gets question.
+     *
+     * @param view the view
+     */
     public void getnewQuestion (View view) {
 
         answer_question(view);
@@ -186,6 +195,11 @@ public class N4EnglishActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Gets random button.
+     *
+     * @return the random button
+     */
     public Button get_random_button() {
 
         Random rnd = new Random();
@@ -197,6 +211,11 @@ public class N4EnglishActivity extends AppCompatActivity {
         return chosenButton;
     }
 
+    /**
+     * Answer question.
+     *
+     * @param v the v
+     */
     public void answer_question(View v) {
 
         switch (v.getId()) {
@@ -240,6 +259,9 @@ public class N4EnglishActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Correct answer.
+     */
     public void correctAnswer() {
         score+=10;
         updateScoreBar(10);
@@ -251,6 +273,9 @@ public class N4EnglishActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Incorrect answer.
+     */
     public void incorrectAnswer () {
         myToast.setText("Correct answer: " + question_word);
         myToast.show();
@@ -262,11 +287,21 @@ public class N4EnglishActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Go to questions.
+     *
+     * @param view the view
+     */
     public void go_to_questions (View view) {
         Intent levelChoiceIntent = new Intent(N4EnglishActivity.this, LevelChoiceActivity.class);
         startActivity(levelChoiceIntent);
     }
 
+    /**
+     * End quiz button.
+     *
+     * @param view the view
+     */
     public void endQuizButton (View view) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
@@ -285,6 +320,11 @@ public class N4EnglishActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Update score bar.
+     *
+     * @param score the score
+     */
     public void updateScoreBar(int score) {
         int currentScore = scoreBar.getProgress();
         int newScore = currentScore += score;
@@ -292,6 +332,9 @@ public class N4EnglishActivity extends AppCompatActivity {
         scoreBar2.setProgress(newScore, true);
     }
 
+    /**
+     * Load bottom bar.
+     */
     public void load_bottom_bar(){
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -331,6 +374,9 @@ public class N4EnglishActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Dark mode.
+     */
     public void dark_mode() {
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
         TextView question = findViewById(R.id.questionNumber);
@@ -344,6 +390,9 @@ public class N4EnglishActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Initialise variables.
+     */
     public void initialise_variables() {
         questionNumber = 0;
         score = 0;

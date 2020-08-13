@@ -21,6 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.logging.Level;
 
+/**
+ * The type Level choice activity.
+ */
 public class LevelChoiceActivity extends AppCompatActivity {
 
     @Override
@@ -35,34 +38,72 @@ public class LevelChoiceActivity extends AppCompatActivity {
         load_bottom_bar();
     }
 
+    /**
+     * Go to n 5 english.
+     *
+     * @param v the v
+     */
     public void go_to_n5English (View v) {
         startActivity(new Intent (getApplicationContext(), N5EnglishActivity.class));
     }
 
+    /**
+     * Go to n 5 kana.
+     *
+     * @param v the v
+     */
     public void go_to_n5Kana (View v) {
         startActivity(new Intent (getApplicationContext(), N5KanaActivity.class));
     }
 
+    /**
+     * Go to n 4 english.
+     *
+     * @param v the v
+     */
     public void go_to_n4English (View v) {
         startActivity(new Intent (getApplicationContext(), N4EnglishActivity.class));
     }
 
+    /**
+     * Go to n 4 kana.
+     *
+     * @param v the v
+     */
     public void go_to_n4Kana (View v) {
         startActivity(new Intent (getApplicationContext(), N4KanaActivity.class));
     }
 
+    /**
+     * Go to endless.
+     *
+     * @param v the v
+     */
     public void go_to_endless (View v) {
         startActivity(new Intent (getApplicationContext(), EndlessActivity.class));
     }
 
+    /**
+     * Go to profile.
+     *
+     * @param v the v
+     */
     public void go_to_profile (View v) {
         startActivity(new Intent (getApplicationContext(), ProfileActivity.class));
     }
 
+    /**
+     * Not available.
+     *
+     * @param v the v
+     */
     public void notAvailable (View v) {
         Toast.makeText(LevelChoiceActivity.this, "This level will be added in a future version", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Load bottom bar.
+     */
     public void load_bottom_bar() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.BottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -102,6 +143,9 @@ public class LevelChoiceActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Dark mode.
+     */
     public void dark_mode() {
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
         Button endlessButton = findViewById(R.id.endlessButton);
@@ -115,6 +159,9 @@ public class LevelChoiceActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Check for name.
+     */
     public void check_for_name() {
         CardView setNameCard = findViewById(R.id.setNameCard);
         View noNameCover = findViewById(R.id.noNameCover);

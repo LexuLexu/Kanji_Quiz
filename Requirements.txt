@@ -1,8 +1,0 @@
-- Push notifications
-- Choose between different quiz packs (N levels)
-- Light/dark themes
-- Play alone or challenge a friend
-- View leaderboard (+my position on it) (also just friends)
-- Search for / add / remove friends
-- View / edit my profile information
-- Delete my profile
